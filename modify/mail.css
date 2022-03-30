@@ -1,0 +1,14 @@
+#titreCommunication{
+    font-family: 'Prompt';
+}
+
+.js-message>*>*>*{
+    /* font-family: 'Barlow Light' !important; */
+    /* font-size: 15px; */
+    line-height: 20px;
+    text-align: justify;
+}
+
+/* .js-message>*>*>*>*{
+    font-family: 'Barlow Medium' !important;
+} */

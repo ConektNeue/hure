@@ -1,0 +1,292 @@
+.ui-link-inherit{
+    color: black !important;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+body, #module_notes{
+    font-family: 'Raleway', sans-serif !important;
+    letter-spacing: 0.25px !important;
+}
+
+/* login */
+h1{
+    font-size: 15px !important;
+}
+
+.btn--sm{
+    transition: 0.3s !important;
+}
+
+.btn--sm:hover{
+    background-color: rgb(240, 240, 240);
+    transition: 0.3s !important;
+    color: rgb(0, 0, 0) !important;
+}
+
+#button-submit{
+    border-radius: 2.5px;
+}
+/* login end */
+
+.btn--primary{
+    border-radius: 2.5px !important;
+}
+
+.btn--warn{
+    border-radius: 2.5px !important;
+    color: rgb(0, 151, 144) !important;
+    border-color: rgb(0, 151, 144) !important;
+}
+
+.btn--warn:hover{
+    transition: 0.15s;
+    color: white !important;
+    background-color: rgb(0, 151, 144) !important;
+    border-color: rgb(0, 151, 144) !important;
+}
+
+#retourListeMessages{
+    border-radius: 2.5px !important;
+    color: rgb(0, 151, 144) !important;
+    border-color: rgb(0, 151, 144) !important;
+}
+
+#retourListeMessages:hover{
+    transition: 0.15s;
+    color: white !important;
+    background-color: rgb(0, 151, 144) !important;
+    border-color: rgb(0, 151, 144) !important;
+}
+
+.cahier_texte{
+    line-height: 17.5px;
+    font-size: 12.5px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+}
+
+.seance_contenu, .seance_issue{
+    font-size: 15px;
+}
+
+h4 > a:hover{
+    color: rgb(122, 194, 224);
+}
+
+.icon--folder-add-primary, .icon--download-primary{
+    display: none !important;
+}
+
+.js-jumbofiles__file-url{
+    border-right: 1.5px solid rgb(0, 109, 204) !important;
+}
+
+.btn--naked{
+    transition: 0s !important;
+}
+
+.js-jumbofiles__file-title:hover, .btn--naked:hover{
+    color: rgb(122, 194, 224) !important;
+    transition: 0s !important;
+}
+
+#contenu{
+    background: rgb(240, 240, 240);
+    margin-left: -5px;
+    margin-right: -5px;
+}
+
+#filtres_criteres_contenu{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12.5px;
+}
+
+.burger{
+    position: fixed !important;
+}
+
+.burger:hover{
+    background: rgb(73, 85, 170) !important;
+}
+
+.header__title-link{
+    margin-left: 315px;
+}
+
+.label{
+    text-shadow: none !important;
+}
+
+.services-list--shortcut a{
+    border-radius: 20px !important;
+}
+
+.content-toolbar{
+    margin-top: -40px;
+}
+
+.tabs__link:hover{
+    border-bottom: none !important;
+    text-decoration: underline;
+    color: rgb(122, 194, 224) !important;
+}
+
+.active:hover{
+    text-decoration: none;
+    border-bottom: .1875rem solid !important;
+    color: rgb(0, 109, 204) !important;
+}
+
+.checkbox-pills__label{
+    padding: 5px !important;
+}
+
+.checkbox-pills__label:hover{
+    background-color: rgb(0, 109, 204) !important;
+    color: white !important;
+    border-color: rgb(0, 109, 204) !important;
+}
+
+#filtres-matieres:hover{
+    border: 2px rgb(187, 123, 247) solid;
+}
+
+.dropdown__toggle{
+    color: rgb(215, 215, 215) !important;
+    transition: 0.3s !important;
+}
+
+.dropdown__toggle:hover{
+    color: white !important;
+    background: none !important;
+    transition: 0.3s !important;
+}
+
+.dropdown__toggle:focus{
+    border: none !important;
+    background: none !important;
+}
+
+/* #modalTitletriggerNouveauMessage::after{
+    content: " | Messagerie améliorée par Ent++";
+} */
+
+.js-boutonSupprimerBrouillon-modalFooter:hover{
+    color: white !important;
+    background-color: rgb(191, 0, 19);
+    border: white;
+}
+
+.close{
+    border-radius: 2.5px !important;
+    color: red !important;
+    width: 67.5px !important;
+    border: 1px red solid !important;
+    transition: 0.15s;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.close:hover{
+    transition: 0.15s;
+    color: white !important;
+    background-color: red !important;
+}
+.close:active{
+    transition: 0s;
+    background-color: rgb(211, 0, 0) !important;
+    border-color: rgb(211, 0, 0) !important;
+    color: white !important;
+}
+
+#titre_ecran{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin-left: 30px !important;
+    margin-top: -50px !important;
+}
+
+#rappel_criteres{
+    margin-top: 2.5px !important;
+    text-decoration: underline;
+}
+
+.btn--secondary{
+    display: none;
+    border-radius: 2.5px !important;
+}
+
+.js-session-extender_cancel{
+    display: none;
+}
+
+h3 a:hover{
+    color: rgb(122, 194, 224);
+}
+
+.section-list__link:hover{
+    color: rgb(122, 194, 224);
+}
+
+h2 a:hover{
+    color: rgb(122, 194, 224);
+}
+
+.js-close-msg{
+    height: 32.5px;
+}
+
+.cartouche{
+    height: 25px;
+    padding: 5px;
+}
+
+#module_notes{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#idPeriode{
+    font-size: 13.75px;
+}
+
+.breadcrumb{
+    font-size: 13.75px;
+    margin-bottom: -100px !important;
+}
+
+.yui-overlay{
+    font-family: 'Lato', sans-serif;
+    font-size: 12.5px;
+    letter-spacing: 0.025em;
+    font-weight: 400;
+}
+
+.kuiwindow_hd{
+    font-weight: 900;
+}
+
+.content-toolbar__title{
+    font-size: 25px !important;
+}
+
+.services-list__group-name:hover{
+    color: rgb(255, 180, 0) !important;
+}
+
+.breadcrumb__link{
+    text-decoration: none;
+}
+
+.breadcrumb__link:hover{
+    color: rgb(122, 194, 224);
+}
+
+.jumbofiles__file-name:hover{
+    color: rgb(122, 194, 224);
+}
+
+.jumbofiles__file-download > a:hover{
+    color: rgb(122, 194, 224) !important;
+}

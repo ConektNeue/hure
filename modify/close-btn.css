@@ -1,0 +1,16 @@
+.close{
+    background-color: white;
+    color: blueviolet !important;
+    transition: .15s;
+}
+.close:hover{
+    background-color: rgb(236, 236, 236);
+}
+
+.close--sm{
+    top: 0 !important; right: 0 !important;
+    width: 80px !important;
+    height: 100% !important;
+    border-radius: 0 5px 5px 0 !important;
+    background-color: rgba(0, 0, 0, 0);
+}

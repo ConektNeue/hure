@@ -1,0 +1,18 @@
+"permissions": [
+    "activeTab",
+    "tabs",
+    "webNavigation",
+    "webRequest",
+    "storage",
+    "unlimitedStorage",
+    "menus",
+    "contextMenus"
+],
+
+"commands": {
+    "_execute_sidebar_action": {
+        "suggested_key": {
+            "default": "Ctrl+Q"
+        }
+    }
+}

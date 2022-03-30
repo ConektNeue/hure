@@ -1,0 +1,7 @@
+.avatar__image{
+    overflow: visible;
+    transition: .3s;
+}
+.avatar__image:hover{
+    transform: scale(1.2);
+}

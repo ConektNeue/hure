@@ -1,0 +1,4 @@
+.msg{
+    border-radius: 5px;
+    padding-top: calc(1rem + 10px); padding-bottom: calc(1rem + 10px);
+}

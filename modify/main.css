@@ -1,0 +1,54 @@
+*{
+    outline: none !important;
+    font-family: 'Poppins', sans-serif;
+    scrollbar-width: thin;
+}
+
+strong{
+    /* font-family: 'Poppins Medium'; */
+    font-weight: 900;
+}
+
+.btn--primary{
+    border-radius: 8px !important;
+    border: none !important;
+    margin: 0 !important; padding: 0 !important;
+    background-color: blueviolet !important;
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, .25) !important; */
+    /* height: 40px !important; */
+    width: max-content !important;
+    padding-top: 6px !important; padding-bottom: 6px !important;
+    padding-left: 15px !important; padding-right: 15px !important;
+    /* font-family: 'Poppins Medium'; */
+    font-weight: 900 !important;
+    transition: .3s !important;
+}
+.btn--primary:active{
+    box-shadow: none !important;
+    transition: 0s !important;
+}
+
+.btn--secondary{
+    border-radius: 8px !important;
+    border: 2px solid rgba(0, 0, 0, 0) !important;
+    box-shadow: none !important;
+    background-color: rgb(240, 240, 240) !important;
+    color: #006dcc !important;
+    padding-top: 6px !important; padding-bottom: 6px !important;
+}
+.btn--secondary:active{
+    border: 2px solid #006dcc !important;
+}
+
+#button-submit{
+    margin-top: 10px !important;
+}
+
+.js-afficherNouveauMessage{
+    margin-top: -5px !important;
+}
+
+.services-shortcut__label{
+    font-family: 'Poppins';
+    font-weight: 900;
+}

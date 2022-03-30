@@ -1,0 +1,71 @@
+{
+    "manifest_version": 2,
+    "name": "EntPp",
+    "version": "1.0.0.0",
+    "description": "Modernisez votre E.N.T. en 2 clics : installer l'extension, ajouter au navigateur.",
+    "author": "Went Lab",
+
+    "icons": {
+        "48": "./logo-a.png",
+        "96": "./logo-a.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "webNavigation",
+        "webRequest",
+        "storage",
+        "unlimitedStorage",
+        "menus",
+        "notifications"
+    ],
+
+    "sidebar_action": {
+        "default_title": "Mises à jour",
+        "default_panel": "./sidebar/sidebar.html"
+    },
+
+    "commands": {
+        "_execute_sidebar_action": {
+            "suggested_key": {
+                "default": "Ctrl+Q"
+            }
+        }
+    },
+
+    "browser_action": {
+        "default_popup": "./popup/popup.html",
+        "default_title": "EntPp"
+    },
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.ent.auvergnerhonealpes.fr/*"
+            ],
+            "css": [
+                "variables.css", "modify/easter-eggs.css",
+                "modify/fonts.css", "modify/scrollbar.css",
+                "modify/burger.css", "modify/tabs.css", "modify/taf-container.css",
+                "modify/selection.css", "modify/cursor-pointer.css", "modify/links.css",
+                "modify/main.css", "./modify/pupil-infos.css", "./modify/panel.css",
+                "./modify/msg.css", "./modify/close-btn.css", "./modify/mail.css"
+            ],
+            "js": [
+                "./modify-js/infobox.js"
+            ]
+        }
+    ],
+
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "entpp@wentlab.org",
+          "strict_min_version": "92.0"
+        }
+    }
+}

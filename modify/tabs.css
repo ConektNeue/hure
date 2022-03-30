@@ -1,0 +1,11 @@
+.tabs__link:hover{
+    border-bottom: none !important;
+    text-decoration: underline;
+    color: rgb(122, 194, 224) !important;
+}
+
+.active:hover{
+    text-decoration: none;
+    border-bottom: .1875rem solid !important;
+    color: rgb(0, 109, 204) !important;
+}

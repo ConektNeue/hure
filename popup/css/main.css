@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
+
+.hidden{
+    display: none;
+}
+
+*{
+    user-select: none;
+    font-size: 100%;
+    box-sizing: border-box;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Barlow', sans-serif;
+}
+
+body{
+    overflow: hidden;
+    background-color: rgb(31, 31, 31);
+    min-width: 500px;
+    min-height: 400px;
+    max-width: 251px;
+    max-height: 401px;
+    width: 500px;
+    height: 400px;
+    margin: 0; padding: 0;
+    border: none;
+    scroll-behavior: smooth;
+}
+
+#ui_controller{
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%; width: 100%;
+    background-color: rgb(31, 31, 31);
+    margin: 0; padding: 0;
+    overflow: hidden;
+    border: none;
+    scroll-behavior: smooth;
+}

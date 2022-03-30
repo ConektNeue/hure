@@ -1,0 +1,46 @@
+@keyframes rainbow {
+    0% {
+     background-position: 1% 80%;
+    }
+    50% {
+     background-position: 99% 20%;
+    }
+    100% {
+     background-position: 1% 80%;
+    }
+}
+
+.burger{
+    color: white !important;
+    user-select: none !important;
+}
+/* .burger:hover{
+    color: white !important;
+    animation: rainbow 10s infinite;
+    background-image: linear-gradient(124deg,rgb(208, 255, 0),pink,yellow,orange) !important;
+    background-size: 1600% 1600%;
+} */
+
+.services-shortcut__link{
+    border-radius: 100px !important;
+    /* transition: .3s !important; */
+    transform: translateX(-2px);
+    font-weight: 100;
+}
+
+.services-list__group-name{
+    border-radius: 0 !important;
+    /* transition: .3s !important; */
+}
+
+.services-shortcut__label{
+    text-shadow: none !important;
+}
+
+.menu{
+    user-select: none !important;
+}
+
+.js-messagerieNotif{
+    transform: translateY(3px);
+}

@@ -1,0 +1,15 @@
+.js-taf-container{
+    transition: .3s;
+}
+.js-taf-container:hover{
+    margin-left: 5px;
+    margin-right: -5px;
+    transition: 0.3s;
+    box-shadow: 0 0 15px 0 rgb(219, 219, 219);
+    color: black !important;
+    cursor: pointer !important;
+}
+
+.js-taf__btn-faire{
+    border-radius: 2.5px;
+}

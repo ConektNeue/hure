@@ -1,0 +1,23 @@
+.js-kommunaute-container:hover::after{
+    font-style: normal !important;
+    color: white !important;
+    background-color: black !important;
+    content: "> Pierre qui roule n'amasse pas mousse.";
+}
+
+.cartouche--bg-warn:hover::after{
+    font-style: normal !important;
+    color: white !important;
+    background-color: black !important;
+    content: "> LA TELE LA TELE, M6 M6";
+    font-size: 50px;
+    position: absolute;
+    top: 0; left: 0;
+}
+
+.cas__partners:hover::after{
+    font-style: normal !important;
+    color: white !important;
+    background-color: black !important;
+    content: "> Tu crush sur EntPp ? C'est normal.";
+}
