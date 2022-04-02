@@ -9,10 +9,17 @@
     "contextMenus"
 ],
 
+"sidebar_action": {
+    "default_title": "Mises à jour",
+    "default_panel": "./sidebar/sidebar.html"
+},
+
 "commands": {
     "_execute_sidebar_action": {
         "suggested_key": {
             "default": "Ctrl+Q"
         }
     }
-}
+},
+
+"js": ["./modify-js/infobox.js"]

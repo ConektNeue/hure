@@ -1,0 +1,27 @@
+.modal--mask{
+    animation: modalMask .4s !important;
+    transition: 3s;
+}
+
+.modal__dialog{
+    animation: modal .4s;
+    transition: 3s;
+}
+
+@keyframes modalMask {
+    from{
+        opacity: 0;
+    }
+}
+
+@keyframes modal {
+    from{
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+.modal__title{
+    font-weight: 900;
+    font-size: 20px !important;
+}

@@ -1,7 +1,14 @@
 *{
     outline: none !important;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 15px !important;
+    line-height: 24px !important;
+    text-align: justify;
     scrollbar-width: thin;
+}
+
+body{
+    overflow-y: auto !important;
 }
 
 strong{
@@ -17,9 +24,8 @@ strong{
     /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, .25) !important; */
     /* height: 40px !important; */
     width: max-content !important;
-    padding-top: 6px !important; padding-bottom: 6px !important;
+    padding-top: 2px !important; padding-bottom: 2px !important;
     padding-left: 15px !important; padding-right: 15px !important;
-    /* font-family: 'Poppins Medium'; */
     font-weight: 900 !important;
     transition: .3s !important;
 }
@@ -34,7 +40,7 @@ strong{
     box-shadow: none !important;
     background-color: rgb(240, 240, 240) !important;
     color: #006dcc !important;
-    padding-top: 6px !important; padding-bottom: 6px !important;
+    padding-top: 1px !important; padding-bottom: 1px !important;
 }
 .btn--secondary:active{
     border: 2px solid #006dcc !important;

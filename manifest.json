@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
     "name": "EntPp",
-    "version": "1.0.0.0",
+    "version": "1.1",
     "description": "Modernisez votre E.N.T. en 2 clics : installer l'extension, ajouter au navigateur.",
-    "author": "Went Lab",
+    "author": "Conekt",
 
     "icons": {
         "48": "./logo-a.png",
@@ -20,19 +20,6 @@
         "menus",
         "notifications"
     ],
-
-    "sidebar_action": {
-        "default_title": "Mises à jour",
-        "default_panel": "./sidebar/sidebar.html"
-    },
-
-    "commands": {
-        "_execute_sidebar_action": {
-            "suggested_key": {
-                "default": "Ctrl+Q"
-            }
-        }
-    },
 
     "browser_action": {
         "default_popup": "./popup/popup.html",
@@ -54,10 +41,8 @@
                 "modify/burger.css", "modify/tabs.css", "modify/taf-container.css",
                 "modify/selection.css", "modify/cursor-pointer.css", "modify/links.css",
                 "modify/main.css", "./modify/pupil-infos.css", "./modify/panel.css",
-                "./modify/msg.css", "./modify/close-btn.css", "./modify/mail.css"
-            ],
-            "js": [
-                "./modify-js/infobox.js"
+                "./modify/msg.css", "./modify/close-btn.css", "./modify/mail.css",
+                "./modify/modal.css"
             ]
         }
     ],

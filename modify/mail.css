@@ -1,5 +1,8 @@
 #titreCommunication{
     font-family: 'Prompt';
+    font-size: 30px !important;
+    margin-top: 10px;
+    text-align: justify;
 }
 
 .js-message>*>*>*{
