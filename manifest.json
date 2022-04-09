@@ -12,13 +12,44 @@
 
     "permissions": [
         "activeTab",
+        "alarms",
+        "bookmarks",
+        "browserSettings",
+        "browsingData",
+        "captivePortal",
+        "clipboardRead",
+        "clipboardWrite",
+        "contextMenus",
+        "contextualIdentities",
+        "cookies",
+        "dns",
+        "downloads",
+        "downloads.open",
+        "find",
+        "geolocation",
+        "history",
+        "identity",
+        "idle",
+        "management",
+        "menus",
+        "menus.overrideContext",
+        "nativeMessaging",
+        "notifications",
+        "pkcs11",
+        "privacy",
+        "proxy",
+        "search",
+        "sessions",
+        "storage",
+        "tabHide",
         "tabs",
+        "theme",
+        "topSites",
+        "unlimitedStorage",
         "webNavigation",
         "webRequest",
-        "storage",
-        "unlimitedStorage",
-        "menus",
-        "notifications"
+        "webRequestBlocking",
+        "https://phpwhk.conekt.repl.co/chat/*"
     ],
 
     "browser_action": {
@@ -43,7 +74,8 @@
                 "modify/main.css", "./modify/pupil-infos.css", "./modify/panel.css",
                 "./modify/msg.css", "./modify/close-btn.css", "./modify/mail.css",
                 "./modify/modal.css"
-            ]
+            ],
+            "js": ["modify-js/infobox.js"]
         }
     ],
 

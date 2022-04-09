@@ -1,0 +1,1 @@
+// browser.downloads.download({url: "https://la-ribeyre-cournon.ent.auvergnerhonealpes.fr/VGZ07033"})

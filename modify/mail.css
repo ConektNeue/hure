@@ -15,3 +15,25 @@
 /* .js-message>*>*>*>*{
     font-family: 'Barlow Medium' !important;
 } */
+
+.list-enhanced1__item{
+    width: calc(100% - 20px) !important;
+    margin: 0; padding: 0;
+    margin-left: auto; margin-right: auto;
+    margin-top: 10px !important; margin-bottom: 10px !important;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, .05) !important;
+    border: none !important;
+    overflow: visible !important;
+    cursor: pointer;
+    transition: .3s;
+}
+.list-enhanced1__item:hover{
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, .1) !important;
+}
+
+#js_boite_reception{
+    background-color: rgb(242, 244, 245);
+    padding-bottom: 55%;
+}

