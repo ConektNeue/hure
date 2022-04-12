@@ -198,19 +198,19 @@ label{
 
 .user-home>.content>.badges{
     position: relative;
-    width: calc(100% - 10px);
+    width: calc(100% - 20px);
     height: max-content;
     margin: 0; padding: 0;
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-gap: 5px;
+    grid-gap: 17.5px;
 }
 
 .user-home>.content>.badges>.badge-item{
     position: relative;
     /* width: 68.75px; height: 68.75px; */
-    height: 44px;
+    height: 32.08px;
     margin: 0; padding: 0;
     /* border: 1px dashed red; */
     grid-column: span 1;
