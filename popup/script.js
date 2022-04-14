@@ -1,6 +1,10 @@
 let accountsURL = 'https://entpp.conekt.repl.co/accounts.json';
 let jsonData = null;
 let badges;
+let realPassword;
+
+let email = document.getElementById('email');
+let password = document.getElementById('password');
 
 function findProp(obj, prop, defval){
     if (typeof defval == 'undefined') defval = null;
@@ -13,7 +17,7 @@ function findProp(obj, prop, defval){
     return obj;
 }
 
-function sendRequest(url, accountName, field) {
+function sendRequest(url, props) {
     let request = new XMLHttpRequest();
     request.open('GET', url);
     request.responseType = 'json';
@@ -21,31 +25,32 @@ function sendRequest(url, accountName, field) {
 
     request.onload = function () {
         jsonData = request.response;
-        // return jsonData[accountName][data];
-        let props = 'eloandenefle.avatar';
-        let propstwo = 'eloandenefle.banner';
-        let propsthree = 'eloandenefle.name';
-        let propfour = 'eloandenefle.badge';
-        document.querySelector('.user-home>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, props) + ')';
-        document.querySelector('.user-home>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propstwo) + ')';
-        document.querySelector('.user-home>.content>.username').innerText = findProp(jsonData, propsthree);
-        console.log(findProp(jsonData, propfour));
-        badges = findProp(jsonData, propfour);
-        badges.forEach(function (badge) {
-            let div = document.createElement('DIV');
-            div.classList.add('badge-item');
-            div.classList.add(badge);
-            document.querySelector('.user-home>.content>.badges').appendChild(div);
-        });
-        // document.querySelector('.user-home>.content>.badge'). = findProp(jsonData, propfour);
+        let localProps = props;
+        let propName = props + '.name';
+        let propAvatar = props + '.avatar';
+        let propBanner = props + '.banner';
+        let propBadge = props + '.badge';
+        // findProp(jsonData, propName);
+        if (props.includes(".password")) {
+            realPassword = findProp(jsonData, localProps);
+        } else {
+            document.querySelector('.user-home>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, propAvatar) + ')';
+            document.querySelector('.user-home>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propBanner) + ')';
+            document.querySelector('.user-home>.content>.username').innerText = findProp(jsonData, propName);
+            console.log(findProp(jsonData, propBadge));
+            badges = findProp(jsonData, propBadge);
+            badges.forEach(function (badge) {
+                let div = document.createElement('DIV');
+                div.classList.add('badge-item');
+                div.classList.add(badge);
+                document.querySelector('.user-home>.content>.badges').appendChild(div);
+            });
+        }
     }
 }
 
-let email = document.getElementById('email');
-let password = document.getElementById('password');
-
 document.getElementById('btn-submit').addEventListener('click', function () {
-    if (localStorage.getItem('user') !== null && localStorage.getItem('password') !== null) {
+    if ((localStorage.getItem('user') !== null && localStorage.getItem('password') !== null) && (email.value === '' || password.value === '')) {
         initializeSession(localStorage.getItem('user'));
     } else if (email.value === '' || password.value === '') {
         alert('Veuillez remplir tous les champs.');
@@ -55,20 +60,22 @@ document.getElementById('btn-submit').addEventListener('click', function () {
 });
 
 function login() {
-    if (email.value === 'a' && password.value === 'b') {
-        localStorage.setItem('user', 'a');
-        localStorage.setItem('password', 'b');
-        initializeSession('a');
-    } else {
+    let props = email.value + '.password';
+    sendRequest(accountsURL, props);
+    if (realPassword === password.value) {
+        localStorage.setItem('user', email.value);
+        localStorage.setItem('password', password.value);
+        initializeSession(email.value);
+    // }
+        } else {
         alert('Email ou mot de passe incorrect.');
+        // alert(email.value + ' ' + password.value);
+        // alert(realPassword);
     }
 }
 
 function initializeSession(name) {
-    if (name === 'a') {
-        document.querySelector('.login').style.display = 'none';
-        document.querySelector('.user-home').style.display = 'block';
-        // let ho = sendRequest(accountsURL, 'eloandenefle', 'name');
-        sendRequest(accountsURL, 'username');
-    }
+    document.querySelector('.login').style.display = 'none';
+    document.querySelector('.user-home').style.display = 'block';
+    sendRequest(accountsURL, name);
 }
