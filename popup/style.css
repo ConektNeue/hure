@@ -176,6 +176,7 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
+    padding-left: 10px; padding-right: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -200,10 +201,10 @@ label{
 
 .user-home>.content>.badges{
     position: relative;
-    width: calc(100% - 20px);
+    width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    margin-top: 20px;
+    margin-top: 20px; margin-bottom: 20px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 17.5px;
@@ -235,4 +236,25 @@ label{
 
 .user-home>.content>.badges>.badge-item.eagle{
     background-image: url('./img/crow_48px.png');
+}
+
+.user-home>.content>.btn-action{
+    position: relative;
+    width: 100%;
+    height: max-content;
+    margin: 0; padding: 0;
+    margin-top: 7.5px;
+    padding-top: 10px; padding-bottom: 10px;
+    display: flex;
+    align-items: center; justify-content: center;
+    color: white;
+    font-size: 17.5px;
+    font-family: 'Source Sans Pro SemiBold';
+    background-color: rgb(43, 43, 43);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+.user-home>.content>.btn-action:hover{
+    background-color: rgb(53, 53, 53);
 }

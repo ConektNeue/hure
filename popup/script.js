@@ -44,6 +44,9 @@ function sendRequest(url, props) {
                 div.classList.add('badge-item');
                 div.classList.add(badge);
                 document.querySelector('.user-home>.content>.badges').appendChild(div);
+                if (badge === 'administrador') {
+                    setAdminaccount();
+                }
             });
         }
     }
@@ -78,4 +81,15 @@ function initializeSession(name) {
     document.querySelector('.login').style.display = 'none';
     document.querySelector('.user-home').style.display = 'block';
     sendRequest(accountsURL, name);
+}
+
+function setAdminaccount() {
+    let adminWhitness = document.createElement('DIV');
+    adminWhitness.style = 'position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; padding: 0; background: linear-gradient(90deg, black, rgba(0, 0, 0, .5)); text-indent: 5px; color: white;';
+    adminWhitness.innerText = 'Administrateur';
+    document.querySelector('.user-home').appendChild(adminWhitness);
+    let btnactSeeusers = document.createElement('DIV');
+    btnactSeeusers.classList.add('btn-action');
+    btnactSeeusers.innerText = 'Voir les utilisateurs';
+    document.querySelector('.user-home>.content').appendChild(btnactSeeusers);
 }
