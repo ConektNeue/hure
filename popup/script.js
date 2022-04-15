@@ -90,6 +90,15 @@ function setAdminaccount() {
     document.querySelector('.user-home').appendChild(adminWhitness);
     let btnactSeeusers = document.createElement('DIV');
     btnactSeeusers.classList.add('btn-action');
+    btnactSeeusers.setAttribute('id', 'btn-seeusers');
+    btnactSeeusers.setAttribute('onclick', 'seeUser()');
     btnactSeeusers.innerText = 'Voir les utilisateurs';
     document.querySelector('.user-home>.content').appendChild(btnactSeeusers);
 }
+
+function seeUser() {
+    document.querySelector('.user-home').style.display = 'none';
+    document.querySelector('.second').style.display = 'block';
+}
+
+seeUser();
