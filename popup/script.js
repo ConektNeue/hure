@@ -26,11 +26,11 @@ function sendRequest(url, props, option) {
 
     request.onload = function () {
         jsonData = request.response;
-        let localProps = props;
-        let propName = props + '.name';
-        let propAvatar = props + '.avatar';
-        let propBanner = props + '.banner';
-        let propBadge = props + '.badge';
+        let localProps = 'accounts.' + props;
+        let propName = 'accounts.' + props + '.name';
+        let propAvatar = 'accounts.' + props + '.avatar';
+        let propBanner = 'accounts.' + props + '.banner';
+        let propBadge = 'accounts.' + props + '.badge';
         // findProp(jsonData, propName);
         if (option === 'password') {
             realPassword = findProp(jsonData, localProps);
@@ -50,14 +50,14 @@ function sendRequest(url, props, option) {
                 }
             });
         } else if (option === 'userlist') {
-            accounts = findProp(jsonData, localProps);
+            accounts = findProp(jsonData, props);
             for (let account in accounts) {
                 let value = accounts[account];
                 let userItem = document.createElement('DIV');
                 userItem.classList.add('user-item');
                 userItem.innerHTML = '<div class="avatar" style="background-image: url(' + value.avatar + ')"></div><div class="username">' + value.name + '</div>';
                 document.querySelector('.second>.content').appendChild(userItem);
-              }
+            }
             // accounts.forEach(function (account) {
             //     let userItem = document.createElement('DIV');
             //     userItem.classList.add('user-item');
@@ -120,4 +120,8 @@ function seeUser() {
     sendRequest(accountsURL, 'accounts', 'userlist');
 }
 
-seeUser();
+document.getElementById('btn-close-second').addEventListener('click', function () {
+    document.querySelector('.second>.content').innerHTML = '';
+    document.querySelector('.second').style.display = 'none';
+    document.querySelector('.user-home').style.display = 'block';
+});
