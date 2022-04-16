@@ -18,7 +18,8 @@ function findProp(obj, prop, defval){
     return obj;
 }
 
-function sendRequest(url, props, option) {
+function sendRequest(url, props, option, page = 'user-home') {
+    console.log('props: ' + props);
     let request = new XMLHttpRequest();
     request.open('GET', url);
     request.responseType = 'json';
@@ -35,17 +36,18 @@ function sendRequest(url, props, option) {
         if (option === 'password') {
             realPassword = findProp(jsonData, localProps);
         } else if (option === 'userpage') {
-            document.querySelector('.user-home>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, propAvatar) + ')';
-            document.querySelector('.user-home>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propBanner) + ')';
-            document.querySelector('.user-home>.content>.username').innerText = findProp(jsonData, propName);
+            console.log(page);
+            document.querySelector('.' + page + '>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, propAvatar) + ')';
+            document.querySelector('.' + page + '>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propBanner) + ')';
+            document.querySelector('.' + page + '>.content>.username').innerText = findProp(jsonData, propName);
             console.log(findProp(jsonData, propBadge));
             badges = findProp(jsonData, propBadge);
             badges.forEach(function (badge) {
                 let div = document.createElement('DIV');
                 div.classList.add('badge-item');
                 div.classList.add(badge);
-                document.querySelector('.user-home>.content>.badges').appendChild(div);
-                if (badge === 'administrador') {
+                document.querySelector('.' + page + '>.content>.badges').appendChild(div);
+                if (badge === 'administrador' && page === 'user-home') {
                     setAdminaccount();
                 }
             });
@@ -55,6 +57,7 @@ function sendRequest(url, props, option) {
                 let value = accounts[account];
                 let userItem = document.createElement('DIV');
                 userItem.classList.add('user-item');
+                userItem.setAttribute('data-user', value.name);
                 userItem.innerHTML = '<div class="avatar" style="background-image: url(' + value.avatar + ')"></div><div class="username">' + value.name + '</div>';
                 document.querySelector('.second>.content').appendChild(userItem);
             }
@@ -125,3 +128,33 @@ document.getElementById('btn-close-second').addEventListener('click', function (
     document.querySelector('.second').style.display = 'none';
     document.querySelector('.user-home').style.display = 'block';
 });
+
+document.getElementById('btn-close-third').addEventListener('click', function () {
+    document.querySelector('.third>.content>.content>.badges').innerHTML = '';
+    document.querySelector('.third').style.display = 'none';
+    document.querySelector('.second').style.display = 'block';
+});
+
+let btnUseritem = document.getElementsByClassName("user-item");
+
+function btnUseritemFounding() {
+    for (var i = 0; i < btnUseritem.length; i++) {
+        btnUseritem[i].addEventListener("click", function () {
+        document.querySelector('.second').style.display = 'none';
+        document.querySelector('.third').style.display = 'block';
+        let localProps = this.getAttribute('data-user');
+        console.log(localProps + '/before');
+        localProps.toString();
+        console.log(localProps + '/after');
+        sendRequest(accountsURL, localProps, 'userpage', 'third>.content');
+        });
+    }
+}
+
+// for (var i = 0; i < btnUseritem.length; i++) {
+//     btnUseritem[i].addEventListener("click", function () {
+//         console.log(this.innerHTML);
+//     });
+// }
+
+setInterval("btnUseritemFounding()", 1000);
