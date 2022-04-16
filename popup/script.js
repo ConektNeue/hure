@@ -2,6 +2,7 @@ let accountsURL = 'https://entpp.conekt.repl.co/accounts.json';
 let jsonData = null;
 let badges;
 let realPassword;
+let accounts;
 
 let email = document.getElementById('email');
 let password = document.getElementById('password');
@@ -17,7 +18,7 @@ function findProp(obj, prop, defval){
     return obj;
 }
 
-function sendRequest(url, props) {
+function sendRequest(url, props, option) {
     let request = new XMLHttpRequest();
     request.open('GET', url);
     request.responseType = 'json';
@@ -31,9 +32,9 @@ function sendRequest(url, props) {
         let propBanner = props + '.banner';
         let propBadge = props + '.badge';
         // findProp(jsonData, propName);
-        if (props.includes(".password")) {
+        if (option === 'password') {
             realPassword = findProp(jsonData, localProps);
-        } else {
+        } else if (option === 'userpage') {
             document.querySelector('.user-home>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, propAvatar) + ')';
             document.querySelector('.user-home>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propBanner) + ')';
             document.querySelector('.user-home>.content>.username').innerText = findProp(jsonData, propName);
@@ -48,6 +49,23 @@ function sendRequest(url, props) {
                     setAdminaccount();
                 }
             });
+        } else if (option === 'userlist') {
+            accounts = findProp(jsonData, localProps);
+            for (let account in accounts) {
+                let value = accounts[account];
+                let userItem = document.createElement('DIV');
+                userItem.classList.add('user-item');
+                userItem.innerHTML = '<div class="avatar" style="background-image: url(' + value.avatar + ')"></div><div class="username">' + value.name + '</div>';
+                document.querySelector('.second>.content').appendChild(userItem);
+              }
+            // accounts.forEach(function (account) {
+            //     let userItem = document.createElement('DIV');
+            //     userItem.classList.add('user-item');
+            //     userItem.innerHTML = '<div class="avatar" style="background-image: url(' + account.avatar + ')"></div><div class="username">' + account.name + '</div>';
+            //     document.querySelector('.second>.content').appendChild(userItem);
+            // });
+        } else {
+            alert('ok');
         }
     }
 }
@@ -64,7 +82,7 @@ document.getElementById('btn-submit').addEventListener('click', function () {
 
 function login() {
     let props = email.value + '.password';
-    sendRequest(accountsURL, props);
+    sendRequest(accountsURL, props, 'password');
     if (realPassword === password.value) {
         localStorage.setItem('user', email.value);
         localStorage.setItem('password', password.value);
@@ -80,7 +98,7 @@ function login() {
 function initializeSession(name) {
     document.querySelector('.login').style.display = 'none';
     document.querySelector('.user-home').style.display = 'block';
-    sendRequest(accountsURL, name);
+    sendRequest(accountsURL, name, 'userpage');
 }
 
 function setAdminaccount() {
@@ -99,6 +117,7 @@ function setAdminaccount() {
 function seeUser() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
+    sendRequest(accountsURL, 'accounts', 'userlist');
 }
 
 seeUser();

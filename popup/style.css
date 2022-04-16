@@ -13,6 +13,10 @@
     src: url('./font/sans-serif/SourceSansPro-SemiBold.ttf') format('truetype')
 }
 
+::-webkit-scrollbar{
+    display: none;
+}
+
 *{
     overflow: hidden;
     box-sizing: border-box;
@@ -269,6 +273,7 @@ label{
     margin: 0; padding: 0;
     box-shadow: 0 5px 10px rgb(24, 24, 24);
     background-color: rgb(34, 34, 34);
+    overflow-y: auto;
 }
 
 .second>.btn-close{
@@ -304,5 +309,44 @@ label{
     margin: 0; padding: 0;
     margin-top: 50px;
     padding-left: 10px; padding-right: 10px;
-    border: 2px dashed red;
+}
+
+.second>.content>.user-item{
+    position: relative;
+    width: 100%;
+    height: 55px;
+    margin: 0; padding: 0;
+    display: flex;
+    align-items: center;
+}
+.second>.content>.user-item:hover{
+    cursor: pointer;
+}
+.second>.content>.user-item:hover>.username{
+    text-decoration: underline .5px white;
+    text-underline-offset: 2px;
+}
+
+.second>.content>.user-item>.avatar{
+    position: relative;
+    width: 40px; height: 40px;
+    min-width: 40px;
+    margin: 0; padding: 0;
+    /* margin-left: 7.5px; */
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.second>.content>.user-item>.username{
+    position: relative;
+    width: max-content;
+    margin: 0; padding: 0;
+    margin-left: 10px;
+    padding-right: 7.5px;
+    color: white;
+    font-size: 17.5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
