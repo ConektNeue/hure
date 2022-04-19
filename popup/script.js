@@ -121,6 +121,8 @@ function seeUser() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
     sendRequest(accountsURL, 'accounts', 'userlist');
+    setTimeout('btnUseritemFounding()', 1000);
+    setTimeout('console.log("Founded.")', 1000);
 }
 
 document.getElementById('btn-close-second').addEventListener('click', function () {
@@ -143,9 +145,7 @@ function btnUseritemFounding() {
         document.querySelector('.second').style.display = 'none';
         document.querySelector('.third').style.display = 'block';
         let localProps = this.getAttribute('data-user');
-        console.log(localProps + '/before');
         localProps.toString();
-        console.log(localProps + '/after');
         sendRequest(accountsURL, localProps, 'userpage', 'third>.content');
         });
     }
@@ -157,4 +157,4 @@ function btnUseritemFounding() {
 //     });
 // }
 
-setInterval("btnUseritemFounding()", 1000);
+// setInterval("btnUseritemFounding()", 1000);
