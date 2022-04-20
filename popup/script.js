@@ -38,7 +38,16 @@ function sendRequest(url, props, option, page = 'user-home') {
         } else if (option === 'userpage') {
             console.log(page);
             document.querySelector('.' + page + '>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, propAvatar) + ')';
-            document.querySelector('.' + page + '>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propBanner) + ')';
+            if (findProp(jsonData, propBanner) !== null) {
+                document.querySelector('.' + page + '>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propBanner) + ')';
+                document.querySelector('.' + page + '>.banner').style.backgroundPosition = 'center';
+                document.querySelector('.' + page + '>.banner').style.backgroundSize = 'cover';
+                document.querySelector('.' + page + '>.banner').style.backgroundRepeat = 'no-repeat';
+                document.querySelector('.' + page + '>.banner').style.height = '120px';
+            } else {
+                document.querySelector('.' + page + '>.banner').style.background = 'black';
+                document.querySelector('.' + page + '>.banner').style.height = '60px';
+            }
             document.querySelector('.' + page + '>.content>.username').innerText = findProp(jsonData, propName);
             console.log(findProp(jsonData, propBadge));
             badges = findProp(jsonData, propBadge);
