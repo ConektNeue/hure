@@ -60,6 +60,7 @@ function sendRequest(url, props, option, page = 'user-home') {
                     setAdminaccount();
                 }
             });
+            setTimeout(function () { btnActionFounding(); }, 1000);
         } else if (option === 'userlist') {
             accounts = findProp(jsonData, props);
             for (let account in accounts) {
@@ -121,7 +122,7 @@ function setAdminaccount() {
     let btnactSeeusers = document.createElement('DIV');
     btnactSeeusers.classList.add('btn-action');
     btnactSeeusers.setAttribute('id', 'btn-seeusers');
-    btnactSeeusers.setAttribute('onclick', 'seeUser()');
+    btnactSeeusers.setAttribute('data-action', 'seeUser');
     btnactSeeusers.innerText = 'Voir les utilisateurs';
     document.querySelector('.user-home>.content').appendChild(btnactSeeusers);
 }
@@ -130,8 +131,7 @@ function seeUser() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
     sendRequest(accountsURL, 'accounts', 'userlist');
-    setTimeout('btnUseritemFounding()', 1000);
-    setTimeout('console.log("Founded.")', 1000);
+    setTimeout(function () { btnUseritemFounding(); }, 1000);
 }
 
 document.getElementById('btn-close-second').addEventListener('click', function () {
@@ -147,15 +147,27 @@ document.getElementById('btn-close-third').addEventListener('click', function ()
 });
 
 let btnUseritem = document.getElementsByClassName("user-item");
+let btnAction = document.getElementsByClassName("btn-action");
 
 function btnUseritemFounding() {
     for (var i = 0; i < btnUseritem.length; i++) {
         btnUseritem[i].addEventListener("click", function () {
-        document.querySelector('.second').style.display = 'none';
-        document.querySelector('.third').style.display = 'block';
-        let localProps = this.getAttribute('data-user');
-        localProps.toString();
-        sendRequest(accountsURL, localProps, 'userpage', 'third>.content');
+            document.querySelector('.second').style.display = 'none';
+            document.querySelector('.third').style.display = 'block';
+            let localProps = this.getAttribute('data-user');
+            localProps.toString();
+            sendRequest(accountsURL, localProps, 'userpage', 'third>.content');
+        });
+    }
+}
+
+function btnActionFounding() {
+    for (var i = 0; i < btnAction.length; i++) {
+        btnAction[i].addEventListener("click", function () {
+            console.log(this.getAttribute('data-action'));
+            if (this.getAttribute('data-action') === 'seeUser') {
+                seeUser();
+            }
         });
     }
 }
