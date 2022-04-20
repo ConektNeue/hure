@@ -1,6 +1,7 @@
 .close{
     background-color: white;
     color: blueviolet !important;
+    font-size: 21px !important;
     transition: .15s;
 }
 .close:hover{
@@ -13,4 +14,7 @@
     height: 100% !important;
     border-radius: 0 5px 5px 0 !important;
     background-color: rgba(0, 0, 0, 0);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }

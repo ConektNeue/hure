@@ -60,7 +60,7 @@ function sendRequest(url, props, option, page = 'user-home') {
                     setAdminaccount();
                 }
             });
-            setTimeout(function () { btnActionFounding(); }, 1000);
+            setTimeout(function () { btnActionFounding(); }, 800);
         } else if (option === 'userlist') {
             accounts = findProp(jsonData, props);
             for (let account in accounts) {
@@ -131,7 +131,7 @@ function seeUser() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
     sendRequest(accountsURL, 'accounts', 'userlist');
-    setTimeout(function () { btnUseritemFounding(); }, 1000);
+    setTimeout(function () { btnUseritemFounding(); }, 800);
 }
 
 document.getElementById('btn-close-second').addEventListener('click', function () {

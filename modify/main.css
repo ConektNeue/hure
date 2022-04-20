@@ -2,7 +2,7 @@
     outline: none !important;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 15px !important;
-    line-height: 20px !important;
+    /* line-height: 20px !important; */
     text-align: justify;
     scrollbar-width: thin;
 }
@@ -27,6 +27,7 @@ strong{
     padding-top: 2px !important; padding-bottom: 2px !important;
     padding-left: 15px !important; padding-right: 15px !important;
     font-weight: 900 !important;
+    line-height: 20px !important;
     transition: .3s !important;
 }
 .btn--primary:active{
@@ -41,6 +42,7 @@ strong{
     background-color: rgb(240, 240, 240) !important;
     color: #006dcc !important;
     padding-top: 1px !important; padding-bottom: 1px !important;
+    line-height: 20px !important;
 }
 .btn--secondary:active{
     border: 2px solid #006dcc !important;

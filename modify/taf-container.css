@@ -13,3 +13,7 @@
 .js-taf__btn-faire{
     border-radius: 2.5px;
 }
+
+.js-taf__modal-trigger>.p-like{
+    line-height: 20px !important;
+}
