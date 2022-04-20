@@ -56,8 +56,8 @@ body{
     height: 500px;
     margin: 0; padding: 0;
     padding: 10px;
-    box-shadow: 0 5px 10px rgb(24, 24, 24);
-    background-color: rgb(34, 34, 34);
+    box-shadow: 0 5px 10px rgb(24, 25, 28);
+    background-color: rgb(24, 25, 28);
 }
 
 .title{
@@ -145,8 +145,8 @@ label{
     width: 300px;
     height: 500px;
     margin: 0; padding: 0;
-    box-shadow: 0 5px 10px rgb(24, 24, 24);
-    background-color: rgb(34, 34, 34);
+    box-shadow: 0 5px 10px rgb(24, 25, 28);
+    background-color: rgb(24, 25, 28);
     overflow-y: auto;
 }
 
@@ -163,17 +163,18 @@ label{
 
 .user-home>.avatar{
     position: relative;
-    width: 100px; height: 100px;
+    width: 80px; height: 80px;
     margin: 0; padding: 0;
-    margin-top: -50px;
-    margin-left: auto; margin-right: auto;
+    margin-top: -40px;
+    margin-left: 20px;
     /* background-color: rgb(100, 100, 100); */
     /* background-image: url('https://img.phonandroid.com/2021/03/netflix-codes-categories.jpg'); */
+    border: 6px solid rgb(24, 25, 28);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5); */
 }
 
 .user-home>.content{
@@ -181,7 +182,7 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    padding-left: 10px; padding-right: 10px;
+    padding-left: 20px; padding-right: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -193,15 +194,15 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    margin-top: 20px;
+    margin-top: 0px;
     color: white;
-    font-size: 33px;
+    font-size: 27px;
     font-family: 'Source Sans Pro Black';
-    text-shadow: 0 0 5px rgba(255, 255, 255, .5);
     overflow: visible !important;
     line-height: 2;
     display: flex;
-    align-items: center; justify-content: center;
+    align-items: center;
+    justify-content: left;
 }
 
 .user-home>.content>.badges{
@@ -209,7 +210,8 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    margin-top: 20px; margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 17.5px;
@@ -272,8 +274,8 @@ label{
     width: 300px;
     height: 500px;
     margin: 0; padding: 0;
-    box-shadow: 0 5px 10px rgb(24, 24, 24);
-    background-color: rgb(34, 34, 34);
+    box-shadow: 0 5px 10px rgb(24, 25, 28);
+    background-color: rgb(24, 25, 28);
     overflow-y: auto;
 }
 
@@ -360,8 +362,8 @@ label{
     width: 300px;
     height: 500px;
     margin: 0; padding: 0;
-    box-shadow: 0 5px 10px rgb(24, 24, 24);
-    background-color: rgb(34, 34, 34);
+    box-shadow: 0 5px 10px rgb(24, 25, 28);
+    background-color: rgb(24, 25, 28);
     overflow-y: auto;
 }
 
@@ -412,17 +414,18 @@ label{
 
 .third>.content>.avatar{
     position: relative;
-    width: 100px; height: 100px;
+    width: 80px; height: 80px;
     margin: 0; padding: 0;
-    margin-top: -50px;
-    margin-left: auto; margin-right: auto;
+    margin-top: -40px;
+    margin-left: 20px;
     /* background-color: rgb(100, 100, 100); */
     /* background-image: url('https://img.phonandroid.com/2021/03/netflix-codes-categories.jpg'); */
+    border: 6px solid rgb(24, 25, 28);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+    /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5); */
 }
 
 .third>.content>.content{
@@ -430,7 +433,7 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    padding-left: 10px; padding-right: 10px;
+    padding-left: 20px; padding-right: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -442,15 +445,15 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    margin-top: 20px;
+    margin-top: 0px;
     color: white;
-    font-size: 33px;
+    font-size: 27px;
     font-family: 'Source Sans Pro Black';
-    text-shadow: 0 0 5px rgba(255, 255, 255, .5);
     overflow: visible !important;
     line-height: 2;
     display: flex;
-    align-items: center; justify-content: center;
+    align-items: center;
+    justify-content: left;
 }
 
 .third>.content>.content>.badges{
@@ -458,7 +461,8 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    margin-top: 20px; margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 17.5px;
