@@ -79,9 +79,10 @@ function sendRequest(url, props, option, page = 'user-home') {
             //     userItem.innerHTML = '<div class="avatar" style="background-image: url(' + account.avatar + ')"></div><div class="username">' + account.name + '</div>';
             //     document.querySelector('.second>.content').appendChild(userItem);
             // });
-        } else {
-            alert('ok');
         }
+        // } else {
+        //     alert('ok');
+        // }
     }
 }
 
@@ -199,3 +200,5 @@ function btnActionFounding() {
 // }
 
 // setInterval("btnUseritemFounding()", 1000);
+
+seeNews();
