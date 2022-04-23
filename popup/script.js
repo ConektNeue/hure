@@ -1,4 +1,5 @@
 let accountsURL = 'https://entpp.conekt.repl.co/accounts.json';
+let postsURL = 'https://entpp.conekt.repl.co/posts.json';
 let jsonData = null;
 let badges;
 let realPassword;
@@ -56,6 +57,7 @@ function sendRequest(url, props, option, page = 'user-home') {
                 div.classList.add('badge-item');
                 div.classList.add(badge);
                 document.querySelector('.' + page + '>.content>.badges').appendChild(div);
+                createBtnSeenews();
                 if (badge === 'administrador' && page === 'user-home') {
                     setAdminaccount();
                 }
@@ -114,6 +116,15 @@ function initializeSession(name) {
     sendRequest(accountsURL, name, 'userpage');
 }
 
+function createBtnSeenews() {
+    let btnactSeenews = document.createElement('DIV');
+    btnactSeenews.classList.add('btn-action');
+    btnactSeenews.setAttribute('id', 'btn-seenews');
+    btnactSeenews.setAttribute('data-action', 'seeNews');
+    btnactSeenews.innerText = 'Voir les news locales';
+    document.querySelector('.user-home>.content').appendChild(btnactSeenews);
+}
+
 function setAdminaccount() {
     let adminWhitness = document.createElement('DIV');
     adminWhitness.style = 'position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; padding: 0; background: linear-gradient(90deg, black, rgba(0, 0, 0, .5)); text-indent: 5px; color: white;';
@@ -132,6 +143,13 @@ function seeUser() {
     document.querySelector('.second').style.display = 'block';
     sendRequest(accountsURL, 'accounts', 'userlist');
     setTimeout(function () { btnUseritemFounding(); }, 800);
+}
+
+function seeNews() {
+    document.querySelector('.user-home').style.display = 'none';
+    document.querySelector('.second').style.display = 'block';
+    sendRequest(postsURL, 'posts', 'newslist');
+    setTimeout(function () { btnNewsitemFounding(); }, 800);
 }
 
 document.getElementById('btn-close-second').addEventListener('click', function () {
@@ -167,6 +185,8 @@ function btnActionFounding() {
             console.log(this.getAttribute('data-action'));
             if (this.getAttribute('data-action') === 'seeUser') {
                 seeUser();
+            } else if (this.getAttribute('data-action') === 'seeNews') {
+                seeNews();
             }
         });
     }

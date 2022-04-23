@@ -23,14 +23,14 @@
     margin-top: 10px !important; margin-bottom: 10px !important;
     background-color: white;
     border-radius: 4px;
-    box-shadow: 0 0 0 0 rgba(0, 0, 0, .05) !important;
-    border: none !important;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, .05) !important;
+    border: 1px solid rgba(0, 0, 0, .1) !important;
     overflow: visible !important;
     cursor: pointer;
     transition: .3s;
 }
 .list-enhanced1__item:hover{
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, .1) !important;
+    box-shadow: 0 1.5px 5px 1px rgba(0, 0, 0, .1) !important;
 }
 
 #js_boite_reception{
@@ -39,5 +39,18 @@
 }
 
 .js-consulterMessage{
-    margin-bottom: 7.5px;
+    margin-bottom: 7px;
+    padding-bottom: 2px;
+}
+
+.js-afficherNouveauMessage{
+    margin-top: 3px !important;
+}
+
+.retourListeMessages{
+    margin-top: 3px !important;
+}
+
+.content-toolbar > .btn-group > .btn{
+    margin-bottom: 0px;
 }

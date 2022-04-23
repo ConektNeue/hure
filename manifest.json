@@ -75,7 +75,7 @@
                 "./modify/msg.css", "./modify/close-btn.css", "./modify/mail.css",
                 "./modify/modal.css"
             ],
-            "js": ["modify-js/infobox.js"]
+            "js": ["./modify-js/infobox.js"]
         }
     ],
 
