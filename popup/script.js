@@ -4,6 +4,7 @@ let jsonData = null;
 let badges;
 let realPassword;
 let accounts;
+let posts;
 
 let email = document.getElementById('email');
 let password = document.getElementById('password');
@@ -73,12 +74,49 @@ function sendRequest(url, props, option, page = 'user-home') {
                 userItem.innerHTML = '<div class="avatar" style="background-image: url(' + value.avatar + ')"></div><div class="username">' + value.name + '</div>';
                 document.querySelector('.second>.content').appendChild(userItem);
             }
-            // accounts.forEach(function (account) {
-            //     let userItem = document.createElement('DIV');
-            //     userItem.classList.add('user-item');
-            //     userItem.innerHTML = '<div class="avatar" style="background-image: url(' + account.avatar + ')"></div><div class="username">' + account.name + '</div>';
-            //     document.querySelector('.second>.content').appendChild(userItem);
-            // });
+        } else if (option === 'newslist') {
+            posts = findProp(jsonData, props);
+            for (let post in posts) {
+                let value = posts[post];
+                let postItem = document.createElement('DIV');
+                postItem.classList.add('news');
+                document.querySelector('.second>.content').appendChild(postItem);
+                postItem.classList.add(`${value.id}`);
+                let postHeader = document.createElement('DIV');
+                postHeader.classList.add('header');
+                document.querySelector(`.second>.content>.${value.id}`).appendChild(postHeader);
+                let postHeaderAvatar = document.createElement('DIV');
+                postHeaderAvatar.classList.add('avatar');
+                postHeaderAvatar.style.backgroundImage = 'url(' + value.avatar + ')';
+                document.querySelector(`.second>.content>.${value.id}>.header`).appendChild(postHeaderAvatar);
+                let postHeaderRight = document.createElement('DIV');
+                postHeaderRight.classList.add('right');
+                document.querySelector(`.second>.content>.${value.id}>.header`).appendChild(postHeaderRight);
+                let postHeaderRightAuthor = document.createElement('DIV');
+                postHeaderRightAuthor.classList.add('author');
+                postHeaderRightAuthor.innerText = value.author;
+                document.querySelector(`.second>.content>.${value.id}>.header>.right`).appendChild(postHeaderRightAuthor);
+                let postHeaderRightDate = document.createElement('DIV');
+                postHeaderRightDate.classList.add('date');
+                postHeaderRightDate.innerText = value.date;
+                document.querySelector(`.second>.content>.${value.id}>.header>.right`).appendChild(postHeaderRightDate);
+                if (value.istitle === "true") {
+                    let postTitle = document.createElement('DIV');
+                    postTitle.classList.add('title');
+                    postTitle.innerText = value.title;
+                    document.querySelector(`.second>.content>.${value.id}`).appendChild(postTitle);
+                }
+                let postContent = document.createElement('DIV');
+                postContent.classList.add('content');
+                postContent.innerHTML = value.content;
+                document.querySelector(`.second>.content>.${value.id}`).appendChild(postContent);
+                if (value.isimage === "true") {
+                    let postImage = document.createElement('IMG');
+                    postImage.src = value.image;
+                    document.querySelector(`.second>.content>.${value.id}`).appendChild(postImage);
+                    console.log(value.image);
+                }
+            }
         }
         // } else {
         //     alert('ok');
@@ -150,7 +188,7 @@ function seeNews() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
     sendRequest(postsURL, 'posts', 'newslist');
-    setTimeout(function () { btnNewsitemFounding(); }, 800);
+    // setTimeout(function () { btnNewsitemFounding(); }, 800);
 }
 
 document.getElementById('btn-close-second').addEventListener('click', function () {
@@ -200,5 +238,3 @@ function btnActionFounding() {
 // }
 
 // setInterval("btnUseritemFounding()", 1000);
-
-seeNews();
