@@ -29,7 +29,7 @@ a{
 }
 a:hover{
     text-decoration: underline rgb(43, 160, 250) 1px;
-    text-underline-offset: 1.5px;
+    text-underline-offset: 2px;
 }
 
 *{
@@ -43,6 +43,7 @@ a:hover{
     font-size: 15px;
     outline: none !important;
     font-family: 'Source Sans Pro';
+    scrollbar-width: thin;
 }
 
 body{
@@ -299,13 +300,25 @@ label{
     overflow-y: auto;
 }
 
-.second>#btn-close-second{
+.second>.toolbar{
     position: fixed;
     top: 0; left: 0;
+    width: 100%;
+    height: 40px;
+    margin: 0; padding: 0;
+    padding-left: 5px; padding-right: 5px;
+    background-color: rgb(34, 34, 34);
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.second>.toolbar>#btn-close-second{
+    position: relative;
     width: max-content;
     height: 30px;
     margin: 0; padding: 0;
-    margin-top: 10px; margin-bottom: 10px; margin-left: 10px;
     padding-left: 15px; padding-right: 15px;
     background-color: rgb(166, 79, 248);
     border: 2px solid rgb(166, 79, 248);
@@ -318,20 +331,31 @@ label{
     align-items: center; justify-content: center;
     transition: .15s linear;
 }
-.second>#btn-close-second:focus{
+.second>.toolbar>#btn-close-second:focus{
     background-color: rgb(51, 51, 51);
     box-shadow: 0 0 0 2px rgb(166 79 248);
     color: rgb(186, 112, 255);
     border: 2px solid rgb(166, 79, 248);
 }
 
+.second>.toolbar>.right{
+    position: relative;
+    width: max-content;
+    height: 30px;
+    margin: 0; padding: 0;
+    margin-left: auto;
+    margin-right: 0;
+}
+
 .second>.content{
     position: relative;
     width: 100%;
-    height: max-content;
+    height: calc(100% - 40px);
     margin: 0; padding: 0;
-    margin-top: 50px;
+    margin-top: 40px;
+    padding-top: 10px;
     padding-left: 10px; padding-right: 10px;
+    overflow-y: auto;
 }
 
 .second>.content>.user-item{
@@ -368,7 +392,7 @@ label{
     position: relative;
     width: max-content;
     margin: 0; padding: 0;
-    margin-top: -5px;
+    margin-top: -1.5px;
     /* margin-left: 10px; */
     /* padding-right: 7.5px; */
     color: white;
@@ -383,7 +407,9 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
+    padding-bottom: 10px;
     /* border: 2px dashed red; */
+    border-bottom: 1px solid rgb(100, 100, 100);
 }
 
 .second>.content>.news>.header{
@@ -391,7 +417,8 @@ label{
     width: 100%;
     height: 50px;
     margin: 0; padding: 0;
-    margin-bottom: 7.5px;
+    margin-top: 17.5px;
+    margin-bottom: 10px;
     display: flex;
     flex-flow: row;
 }
@@ -459,7 +486,6 @@ label{
     font-size: 15px;
     font-family: 'Source Sans Pro';
     line-height: 21px;
-    margin-bottom: 7.5px;
 }
 
 .second>.content>.news>img{
@@ -472,6 +498,7 @@ label{
     margin-bottom: 7.5px;
     border-radius: 16px;
     object-fit: cover;
+    pointer-events: none;
     border: 1px solid rgb(47, 51, 54);
 }
 
@@ -488,13 +515,25 @@ label{
     overflow-y: auto;
 }
 
-.third>#btn-close-third{
+.third>.toolbar{
     position: fixed;
     top: 0; left: 0;
+    width: 100%;
+    height: 40px;
+    margin: 0; padding: 0;
+    padding-left: 5px; padding-right: 5px;
+    background-color: rgb(34, 34, 34);
+    /* border: 2px dashed red; */
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+.third>.toolbar>#btn-close-third{
+    position: relative;
     width: max-content;
     height: 30px;
     margin: 0; padding: 0;
-    margin-top: 10px; margin-bottom: 10px; margin-left: 10px;
     padding-left: 15px; padding-right: 15px;
     background-color: rgb(166, 79, 248);
     border: 2px solid rgb(166, 79, 248);
@@ -507,11 +546,20 @@ label{
     align-items: center; justify-content: center;
     transition: .15s linear;
 }
-.third>#btn-close-third:focus{
+.third>.toolbar>#btn-close-third:focus{
     background-color: rgb(51, 51, 51);
     box-shadow: 0 0 0 2px rgb(166 79 248);
     color: rgb(186, 112, 255);
     border: 2px solid rgb(166, 79, 248);
+}
+
+.third>.toolbar>.right{
+    position: relative;
+    width: max-content;
+    height: 30px;
+    margin: 0; padding: 0;
+    margin-left: auto;
+    margin-right: 0;
 }
 
 .third>.content{
@@ -519,7 +567,7 @@ label{
     width: 100%;
     height: max-content;
     margin: 0; padding: 0;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .third>.content>.banner{

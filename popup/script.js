@@ -52,19 +52,22 @@ function sendRequest(url, props, option, page = 'user-home') {
             }
             document.querySelector('.' + page + '>.content>.username').innerText = findProp(jsonData, propName);
             console.log(findProp(jsonData, propBadge));
+            if (page === 'user-home') {
+                createBtnSeenews();
+            }
             badges = findProp(jsonData, propBadge);
             badges.forEach(function (badge) {
                 let div = document.createElement('DIV');
                 div.classList.add('badge-item');
                 div.classList.add(badge);
                 document.querySelector('.' + page + '>.content>.badges').appendChild(div);
-                createBtnSeenews();
                 if (badge === 'administrador' && page === 'user-home') {
                     setAdminaccount();
                 }
             });
             setTimeout(function () { btnActionFounding(); }, 800);
         } else if (option === 'userlist') {
+            document.querySelector('.second>.content').style.paddingTop = '10px';
             accounts = findProp(jsonData, props);
             for (let account in accounts) {
                 let value = accounts[account];
@@ -75,6 +78,7 @@ function sendRequest(url, props, option, page = 'user-home') {
                 document.querySelector('.second>.content').appendChild(userItem);
             }
         } else if (option === 'newslist') {
+            document.querySelector('.second>.content').style.paddingTop = '0';
             posts = findProp(jsonData, props);
             for (let post in posts) {
                 let value = posts[post];
@@ -114,9 +118,10 @@ function sendRequest(url, props, option, page = 'user-home') {
                     let postImage = document.createElement('IMG');
                     postImage.src = value.image;
                     document.querySelector(`.second>.content>.${value.id}`).appendChild(postImage);
-                    console.log(value.image);
                 }
             }
+            document.querySelector('.second>.content').firstElementChild.style.marginTop = '-1.5px';
+            document.querySelector('.second>.content').lastElementChild.style.borderBottom = 'none';
         }
         // } else {
         //     alert('ok');
