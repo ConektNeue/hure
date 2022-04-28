@@ -1,0 +1,8 @@
+.colorful-bar{
+    position: relative;
+    width: 100%;
+    height: 5px;
+    margin: 0; padding: 0;
+    background-color: #015fdf;
+    background-image: linear-gradient(90deg, #0099f1 0%, #9059ff 9%, #b833e1 35%, #e31587 52%, #fc4055 70%, #ff9640 92%, #fff36e 100%);
+}

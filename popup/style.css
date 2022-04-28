@@ -74,6 +74,7 @@ body{
     padding: 10px;
     box-shadow: 0 5px 10px rgb(24, 25, 28);
     background-color: rgb(24, 25, 28);
+    overflow-y: auto;
 }
 
 .login>.title{
@@ -665,7 +666,7 @@ label{
     background-image: url('./img/crow_48px.png');
 }
 
-.user-home>.content>.badges>.badge-item.insider{
+.third>.content>.content>.badges>.badge-item.insider{
     background-image: url('./img/anydesk_48px.png');
 }
 

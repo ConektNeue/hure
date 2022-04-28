@@ -243,3 +243,21 @@ function btnActionFounding() {
 // }
 
 // setInterval("btnUseritemFounding()", 1000);
+
+function showHint(str) {
+    if (str.length == 0) {
+        document.getElementById("usernameTrend").innerHTML = "";
+        return;
+    } else {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("usernameTrend").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "https://ajax.conekt.repl.co/index.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
+
+document.getElementById('email').autocomplete = 'off';

@@ -79,10 +79,23 @@
         }
     ],
 
+    "sidebar_action": {
+        "default_title": "Mises à jour",
+        "default_panel": "./sidebar/sidebar.html"
+    },
+
     "browser_specific_settings": {
         "gecko": {
           "id": "entpp@wentlab.org",
           "strict_min_version": "92.0"
+        }
+    },
+
+    "commands": {
+        "_execute_sidebar_action": {
+            "suggested_key": {
+                "default": "Ctrl+Q"
+            }
         }
     }
 }
