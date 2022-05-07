@@ -29,14 +29,19 @@ function sendRequest(url, props, option, page = 'user-home') {
 
     request.onload = function () {
         jsonData = request.response;
-        let localProps = 'accounts.' + props;
-        let propName = 'accounts.' + props + '.name';
-        let propAvatar = 'accounts.' + props + '.avatar';
-        let propBanner = 'accounts.' + props + '.banner';
-        let propBadge = 'accounts.' + props + '.badge';
+        let localProps = 'accounts';
+        // let propName = 'accounts.' + props + '.name';
+        // let propAvatar = 'accounts.' + props + '.avatar';
+        // let propBanner = 'accounts.' + props + '.banner';
+        // let propBadge = 'accounts.' + props + '.badge';
         // findProp(jsonData, propName);
         if (option === 'password') {
-            realPassword = findProp(jsonData, localProps);
+            for (let i = 0; i < jsonData.accounts.length; i++) {
+                if (jsonData.accounts[i].name === props) {
+                    realPassword = jsonData.accounts[i].password;
+                }
+            }
+            alert('realPassword: ' + realPassword);
         } else if (option === 'userpage') {
             console.log(page);
             document.querySelector('.' + page + '>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, propAvatar) + ')';
@@ -130,9 +135,7 @@ function sendRequest(url, props, option, page = 'user-home') {
 }
 
 document.getElementById('btn-submit').addEventListener('click', function () {
-    if ((localStorage.getItem('user') !== null && localStorage.getItem('password') !== null) && (email.value === '' || password.value === '')) {
-        initializeSession(localStorage.getItem('user'));
-    } else if (email.value === '' || password.value === '') {
+    if (email.value === '' || password.value === '') {
         alert('Veuillez remplir tous les champs.');
     } else {
         login();
@@ -140,14 +143,11 @@ document.getElementById('btn-submit').addEventListener('click', function () {
 });
 
 function login() {
-    let props = email.value + '.password';
+    let props = email.value;
     sendRequest(accountsURL, props, 'password');
     if (realPassword === password.value) {
-        localStorage.setItem('user', email.value);
-        localStorage.setItem('password', password.value);
         initializeSession(email.value);
-    // }
-        } else {
+    } else {
         alert('Email ou mot de passe incorrect.');
         // alert(email.value + ' ' + password.value);
         // alert(realPassword);
