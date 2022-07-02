@@ -5,6 +5,8 @@ let badges;
 let realPassword;
 let accounts;
 let posts;
+let accountNumber;
+let accountsContent;
 
 let email = document.getElementById('email');
 let password = document.getElementById('password');
@@ -39,37 +41,43 @@ function sendRequest(url, props, option, page = 'user-home') {
             for (let i = 0; i < jsonData.accounts.length; i++) {
                 if (jsonData.accounts[i].name === props) {
                     realPassword = jsonData.accounts[i].password;
+                    accountNumber = i;
+                    accountsContent = jsonData.accounts;
                 }
             }
             alert('realPassword: ' + realPassword);
         } else if (option === 'userpage') {
             console.log(page);
-            document.querySelector('.' + page + '>.avatar').style.backgroundImage = 'url(' + findProp(jsonData, propAvatar) + ')';
-            if (findProp(jsonData, propBanner) !== null) {
-                document.querySelector('.' + page + '>.banner').style.backgroundImage = 'url(' + findProp(jsonData, propBanner) + ')';
-                document.querySelector('.' + page + '>.banner').style.backgroundPosition = 'center';
-                document.querySelector('.' + page + '>.banner').style.backgroundSize = 'cover';
-                document.querySelector('.' + page + '>.banner').style.backgroundRepeat = 'no-repeat';
-                document.querySelector('.' + page + '>.banner').style.height = '120px';
-            } else {
-                document.querySelector('.' + page + '>.banner').style.background = 'black';
-                document.querySelector('.' + page + '>.banner').style.height = '60px';
-            }
-            document.querySelector('.' + page + '>.content>.username').innerText = findProp(jsonData, propName);
-            console.log(findProp(jsonData, propBadge));
-            if (page === 'user-home') {
-                createBtnSeenews();
-            }
-            badges = findProp(jsonData, propBadge);
-            badges.forEach(function (badge) {
-                let div = document.createElement('DIV');
-                div.classList.add('badge-item');
-                div.classList.add(badge);
-                document.querySelector('.' + page + '>.content>.badges').appendChild(div);
-                if (badge === 'administrador' && page === 'user-home') {
-                    setAdminaccount();
+            for (let i = 0; i < jsonData.accounts.length; i++) {
+                if (i === accountNumber) {
+                    document.querySelector('.' + page + '>.avatar').style.backgroundImage = 'url(' + jsonData.accounts[i].avatar_url + ')';
+                    if (findProp(jsonData, jsonData.accounts[i].banner_url) !== null) {
+                        document.querySelector('.' + page + '>.banner').style.backgroundImage = 'url(' + findProp(jsonData, jsonData.accounts[i].banner_url) + ')';
+                        document.querySelector('.' + page + '>.banner').style.backgroundPosition = 'center';
+                        document.querySelector('.' + page + '>.banner').style.backgroundSize = 'cover';
+                        document.querySelector('.' + page + '>.banner').style.backgroundRepeat = 'no-repeat';
+                        document.querySelector('.' + page + '>.banner').style.height = '120px';
+                    } else {
+                        document.querySelector('.' + page + '>.banner').style.background = 'black';
+                        document.querySelector('.' + page + '>.banner').style.height = '60px';
+                    }
+                    document.querySelector('.' + page + '>.content>.username').innerText = jsonData.accounts[i].name;
+                    // console.log(jsonData.accounts[i].);
+                    if (page === 'user-home') {
+                        createBtnSeenews();
+                    }
+                    // badges = findProp(jsonData, propBadge);
+                    // badges.forEach(function (badge) {
+                    //     let div = document.createElement('DIV');
+                    //     div.classList.add('badge-item');
+                    //     div.classList.add(badge);
+                    //     document.querySelector('.' + page + '>.content>.badges').appendChild(div);
+                    //     if (badge === 'administrador' && page === 'user-home') {
+                    //         setAdminaccount();
+                    //     }
+                    // });
                 }
-            });
+            }
             setTimeout(function () { btnActionFounding(); }, 800);
         } else if (option === 'userlist') {
             document.querySelector('.second>.content').style.paddingTop = '10px';
