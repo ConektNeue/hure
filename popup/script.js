@@ -7,15 +7,18 @@ let accounts;
 let posts;
 let accountNumber;
 let accountsContent;
+let accountAvatarUrl;
+let accountBannerUrl;
+let administrador;
 
-let email = document.getElementById('email');
-let password = document.getElementById('password');
+let usernamefield = document.getElementById('email');
+let passwordfield = document.getElementById('password');
 
-function findProp(obj, prop, defval){
+function findProp(obj, prop, defval) {
     if (typeof defval == 'undefined') defval = null;
     prop = prop.split('.');
     for (var i = 0; i < prop.length; i++) {
-        if(typeof obj[prop[i]] == 'undefined')
+        if (typeof obj[prop[i]] == 'undefined')
             return defval;
         obj = obj[prop[i]];
     }
@@ -91,6 +94,7 @@ function sendRequest(url, props, option, page = 'user-home') {
                 document.querySelector('.second>.content').appendChild(userItem);
             }
         } else if (option === 'newslist') {
+            // !Pas de titre pour tous les posts.
             document.querySelector('.second>.content').style.paddingTop = '0';
             posts = findProp(jsonData, props);
             for (let post in posts) {
@@ -145,36 +149,106 @@ function sendRequest(url, props, option, page = 'user-home') {
 document.getElementById('btn-submit').addEventListener('click', function () {
     if (email.value === '' || password.value === '') {
         alert('Veuillez remplir tous les champs.');
-    } else {
-        login();
     }
 });
 
-function login() {
-    let props = email.value;
-    sendRequest(accountsURL, props, 'password');
-    if (realPassword === password.value) {
-        initializeSession(email.value);
-    } else {
-        alert('Email ou mot de passe incorrect.');
-        // alert(email.value + ' ' + password.value);
-        // alert(realPassword);
+window.onload = function () {
+    if (window.location.search !== null) {
+        console.log(window.location.search);
+        localStorage.setItem('username', window.location.search.split('=')[1].split('&')[0]);
+        localStorage.setItem('password', window.location.search.split('=')[2]);
+        initializeSession();
+        // let username = window.location.search.split('=')[1];
+        // let password = window.location.search.split('=')[2];
     }
 }
 
-function initializeSession(name) {
+let username, password;
+
+function initializeSession() {
+    username = localStorage.getItem('username');
+    password = localStorage.getItem('password');
     document.querySelector('.login').style.display = 'none';
     document.querySelector('.user-home').style.display = 'block';
-    sendRequest(accountsURL, name, 'userpage');
+    checkExtistanceForLoginProtocole();
 }
 
-function createBtnSeenews() {
-    let btnactSeenews = document.createElement('DIV');
-    btnactSeenews.classList.add('btn-action');
-    btnactSeenews.setAttribute('id', 'btn-seenews');
-    btnactSeenews.setAttribute('data-action', 'seeNews');
-    btnactSeenews.innerText = 'Voir les news locales';
-    document.querySelector('.user-home>.content').appendChild(btnactSeenews);
+function checkExtistanceForLoginProtocole() {
+    let request = new XMLHttpRequest();
+    request.open('GET', accountsURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function () {
+        jsonData = request.response;
+        console.log(jsonData);
+        let i = 0;
+        let authenticated = false;
+        jsonData.forEach(account => {
+            if (jsonData[i]['username'] === username) {
+                // alert(username + ' / ' + jsonData[i]['username']);
+                if (jsonData[i]['password'] === password) {
+                    // alert(password + ' / ' + jsonData[i]['password']);
+                    authenticated = true;
+                    accountNumber = i;
+                    if (jsonData[i]['administrador'] === 'true') {
+                        administrador = true;
+                    }
+                }
+            }
+            i++;
+        });
+
+        if (authenticated) {
+            initializeUserHome();
+        } else {
+            alert('Veuillez vérifier vos identifiants.');
+        }
+    }
+}
+
+function initializeUserHome() {
+    let request = new XMLHttpRequest();
+    request.open('GET', accountsURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function () {
+        jsonData = request.response;
+        accountAvatarUrl = jsonData[accountNumber]['avatar'];
+        accountBannerUrl = jsonData[accountNumber]['banner_url'];
+
+        if (accountBannerUrl !== undefined) {
+            document.querySelector('.user-home>.banner').style.backgroundImage = 'url(' + jsonData[accountNumber]['banner_url'] + ')';
+        } else {
+            document.querySelector('.user-home>.banner').style.background = 'black';
+            document.querySelector('.user-home>.banner').style.height = '60px';
+        }
+        document.querySelector('.user-home>.avatar').style.backgroundImage = 'url(' + jsonData[accountNumber]['avatar_url'] + ')';
+        document.querySelector('.user-home>.content>.username').textContent = jsonData[accountNumber]['username'];
+
+        let btnActionSeeUser = document.createElement('DIV');
+        btnActionSeeUser.classList.add('btn-action');
+        btnActionSeeUser.setAttribute('data-action', 'seeNews');
+        btnActionSeeUser.setAttribute('id', 'btnActionSeeNews');
+        btnActionSeeUser.textContent = 'Voir les informations';
+        document.querySelector('.user-home>.content').appendChild(btnActionSeeUser);
+
+        if (administrador === true) {
+            let adminWhitness = document.createElement('DIV');
+            adminWhitness.style = 'position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; padding: 0; background: linear-gradient(90deg, black, rgba(0, 0, 0, .5)); text-indent: 5px; color: white;';
+            adminWhitness.innerText = 'Administrateur';
+            document.querySelector('.user-home').appendChild(adminWhitness);
+            let btnactSeeusers = document.createElement('DIV');
+            btnactSeeusers.classList.add('btn-action');
+            btnactSeeusers.setAttribute('data-action', 'seeUser');
+            btnactSeeusers.setAttribute('id', 'btnActionSeeUsers');
+            btnactSeeusers.innerText = 'Voir les utilisateurs';
+            document.querySelector('.user-home>.content').appendChild(btnactSeeusers);
+        }
+
+        btnActionFounding();
+    }
 }
 
 function setAdminaccount() {
@@ -193,14 +267,80 @@ function setAdminaccount() {
 function seeUser() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
-    sendRequest(accountsURL, 'accounts', 'userlist');
-    setTimeout(function () { btnUseritemFounding(); }, 800);
+    document.querySelector('.second>.content').style.paddingTop = '10px';
+
+    let request = new XMLHttpRequest();
+    request.open('GET', accountsURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function () {
+        jsonData = request.response;
+        console.log(jsonData);
+
+        jsonData.forEach(account => {
+            let userItem = document.createElement('DIV');
+            userItem.classList.add('user-item');
+            userItem.setAttribute('data-user', account['username']);
+            userItem.innerHTML = '<div class="avatar" style="background-image: url(' + account['avatar_url'] + ')"></div><div class="username">' + account['username'] + '</div>';
+            document.querySelector('.second>.content').appendChild(userItem);
+        });
+    }
 }
 
 function seeNews() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
-    sendRequest(postsURL, 'posts', 'newslist');
+    document.querySelector('.second>.content').style.paddingTop = '0';
+
+    let request = new XMLHttpRequest();
+    request.open('GET', postsURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function () {
+        jsonData = request.response;
+        console.log(jsonData);
+
+        let i = 0;
+        jsonData.forEach(post => {
+            let postItem = document.createElement('DIV');
+            postItem.classList.add('news');
+            document.querySelector('.second>.content').appendChild(postItem);
+            postItem.classList.add(jsonData[i]['id']);
+            let postHeader = document.createElement('DIV');
+            postHeader.classList.add('header');
+            postItem.appendChild(postHeader);
+            let postHeaderAvatar = document.createElement('DIV');
+            postHeaderAvatar.classList.add('avatar');
+            postHeaderAvatar.style.backgroundImage = 'url(' + jsonData[i]['avatar'] + ')';
+            postHeader.appendChild(postHeaderAvatar);
+            let postHeaderRight = document.createElement('DIV');
+            postHeaderRight.classList.add('right');
+            postHeader.appendChild(postHeaderRight);
+            let postHeaderRightAuthor = document.createElement('DIV');
+            postHeaderRightAuthor.classList.add('author');
+            postHeaderRightAuthor.innerText = jsonData[i]['author'];
+            postHeaderRight.appendChild(postHeaderRightAuthor);
+            let postHeaderRightDate = document.createElement('DIV');
+            postHeaderRightDate.classList.add('date');
+            postHeaderRightDate.innerText = jsonData[i]['date'];
+            postHeaderRight.appendChild(postHeaderRightDate);
+            let postContent = document.createElement('DIV');
+            postContent.classList.add('content');
+            postContent.innerHTML = jsonData[i]['content'];
+            postItem.appendChild(postContent);
+            if (jsonData[i]['image'] !== undefined) {
+                let postImage = document.createElement('IMG');
+                postImage.src = jsonData[i]['image'];
+                postItem.appendChild(postImage);
+            };
+            i++;
+        });
+        document.querySelector('.second>.content').firstElementChild.style.marginTop = '-1.5px';
+        document.querySelector('.second>.content').lastElementChild.style.borderBottom = 'none';
+
+    }
     // setTimeout(function () { btnNewsitemFounding(); }, 800);
 }
 
@@ -268,4 +408,4 @@ function showHint(str) {
     }
 }
 
-document.getElementById('email').autocomplete = 'off';
+// document.getElementById('email').autocomplete = 'off';

@@ -154,6 +154,14 @@ label{
     border: 2px solid rgb(166, 79, 248);
 }
 
+.login>.tip{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    color: grey;
+    font-size: 13px;
+}
+
 .user-home{
     display: none;
     position: fixed;
