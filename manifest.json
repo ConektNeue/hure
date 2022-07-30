@@ -1,15 +1,13 @@
 {
     "manifest_version": 2,
-    "name": "EntPp",
-    "version": "1.2",
-    "description": "Modernisez votre E.N.T. en 2 clics : installer l'extension, ajouter au navigateur.",
-    "author": "Conekt",
-
+    "name": "Hure Magnifying",
+    "version": "1.0",
+    "description": "Hure M. est une extension qui vous permet de moderniser l'interface de l'Espace numérique de travail (ENT) de l'Académie de Clermont-Ferrand. Elle est en outre compatible avec l'infrastructure de communication dématérialisée Naahoce.",
+    "author": "ConektNeue",
     "icons": {
         "48": "./logo-a.png",
         "96": "./logo-a.png"
     },
-
     "permissions": [
         "activeTab",
         "alarms",
@@ -51,46 +49,54 @@
         "webRequestBlocking",
         "https://phpwhk.conekt.repl.co/chat/*"
     ],
-
     "browser_action": {
         "default_popup": "./popup/popup.html",
         "default_title": "EntPp"
     },
-
     "background": {
-        "scripts": ["background.js"]
+        "scripts": [
+            "background.js"
+        ]
     },
-
     "content_scripts": [
         {
             "matches": [
                 "https://*.ent.auvergnerhonealpes.fr/*"
             ],
             "css": [
-                "variables.css", "modify/easter-eggs.css",
-                "modify/fonts.css", "modify/scrollbar.css",
-                "modify/burger.css", "modify/tabs.css", "modify/taf-container.css",
-                "modify/selection.css", "modify/cursor-pointer.css", "modify/links.css",
-                "modify/main.css", "./modify/pupil-infos.css", "./modify/panel.css",
-                "./modify/msg.css", "./modify/close-btn.css", "./modify/mail.css",
+                "variables.css",
+                "modify/easter-eggs.css",
+                "modify/fonts.css",
+                "modify/scrollbar.css",
+                "modify/burger.css",
+                "modify/tabs.css",
+                "modify/taf-container.css",
+                "modify/selection.css",
+                "modify/cursor-pointer.css",
+                "modify/links.css",
+                "modify/main.css",
+                "./modify/pupil-infos.css",
+                "./modify/panel.css",
+                "./modify/msg.css",
+                "./modify/close-btn.css",
+                "./modify/mail.css",
                 "./modify/modal.css"
             ],
-            "js": ["./modify-js/infobox.js"]
+            "js": [
+                "./modify-js/infobox.js"
+            ]
         }
     ],
-
     "sidebar_action": {
         "default_title": "Mises à jour",
         "default_panel": "./sidebar/sidebar.html"
     },
-
     "browser_specific_settings": {
         "gecko": {
-          "id": "entpp@wentlab.org",
-          "strict_min_version": "92.0"
+            "id": "huremagnifying@naahoce.org",
+            "strict_min_version": "100.0"
         }
     },
-
     "commands": {
         "_execute_sidebar_action": {
             "suggested_key": {

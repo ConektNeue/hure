@@ -34,17 +34,32 @@
             <div class="avatar"></div>
             <div class="content">
                 <p class="username"></p>
-                <div class="badges">
-                    <!-- <div class="badge-item desarollador"></div> -->
-                </div>
+                <!-- <div class="badges">
+                    <div class="badge-item desarollador"></div>
+                </div> -->
                 <!-- <div class="btn-action" data-action="seeUser">Voir les utilisateurs</div> -->
             </div>
         </div>
 
         <div class="second">
             <div class="toolbar">
-                <div id="btn-close-second" tabindex="0">Retour</div>
-                <div class="right"></div>
+                <div id="btn-close-second">
+                    <svg width="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d=" M12 10.6811L7.11455 5.80495L11.6006 1.31889L10.291 0L5.80495 4.48607L1.31889 0L0 1.31889L4.48607 5.80495L0 10.291L1.31889 11.6006L5.80495 7.11455L10.6811 12L12 10.6811Z">
+                        </path>
+                    </svg>
+                    <!-- Retour -->
+                </div>
+                <div class="right">
+                    <div class="right-btn" id="btnCreateNews">
+                        <svg width="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14 5.65802H8.34205V0H5.65812V5.65802H0V8.34198H5.65812V14H8.34205V8.34198H14V5.65802Z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
             </div>
             <div class="content">
                 <!-- <div class="user-item">
@@ -73,7 +88,13 @@
 
         <div class="third">
             <div class="toolbar">
-                <div id="btn-close-third" tabindex="0">Retour</div>
+                <div id="btn-close-third" tabindex="0">
+                    <svg width="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d=" M12 10.6811L7.11455 5.80495L11.6006 1.31889L10.291 0L5.80495 4.48607L1.31889 0L0 1.31889L4.48607 5.80495L0 10.291L1.31889 11.6006L5.80495 7.11455L10.6811 12L12 10.6811Z">
+                        </path>
+                    </svg>
+                </div>
                 <div class="right"></div>
             </div>
             <div class="content">
@@ -87,6 +108,18 @@
                     <!-- <div class="btn-action">Voir les utilisateurs</div> -->
                 </div>
             </div>
+        </div>
+
+        <div class="message-writing-screen">
+            <p class="text">Rédigez un post à l'aide du rédacteur de post intégré. Le nombre de caractères d'un post est compris
+                entre vingt et deux cents.</p>
+            <div class="redacting-post-validity-indicator">
+                <p>Votre post <span id="redactingPostValidityIndicator">est trop court</span>.</p>
+            </div>
+            <textarea name="redactingPost" id="redactingPost" cols="30" rows="10"></textarea>
+            <p id="redacting-post-letter-number"><span id="redactingPostLetterNumber">0</span>&nbsp;/ 199</p>
+            <button id="btnSendRedactedPost" class="btn-submit" type="submit" title="Envoyer">Envoyer</button>
+            <button id="btnCancelRedactedPost" class="btn-submit btn-cancel" type="submit" title="Envoyer">Annuler</button>
         </div>
 
     </div>

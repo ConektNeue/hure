@@ -1,5 +1,5 @@
 let accountsURL = 'https://entpp.conekt.repl.co/accounts.json';
-let postsURL = 'https://entpp.conekt.repl.co/posts.json';
+let postsURL = 'https://operator.conekt.repl.co/brandon.json';
 let jsonData = null;
 let badges;
 let realPassword;
@@ -13,6 +13,18 @@ let administrador;
 
 let usernamefield = document.getElementById('email');
 let passwordfield = document.getElementById('password');
+
+var newXHR = null;
+function sendXHR(type, url, data, callback) {
+  newXHR = new XMLHttpRequest() || new window.ActiveXObject("Microsoft.XMLHTTP");
+  newXHR.open(type, url, true);
+  newXHR.send(data);
+  newXHR.onreadystatechange = function() {
+    if (this.status === 200 && this.readyState === 4) {
+      callback(this.response);
+    }
+  };
+}
 
 function findProp(obj, prop, defval) {
     if (typeof defval == 'undefined') defval = null;
@@ -227,24 +239,24 @@ function initializeUserHome() {
         document.querySelector('.user-home>.avatar').style.backgroundImage = 'url(' + jsonData[accountNumber]['avatar_url'] + ')';
         document.querySelector('.user-home>.content>.username').textContent = jsonData[accountNumber]['username'];
 
-        let btnActionSeeUser = document.createElement('DIV');
-        btnActionSeeUser.classList.add('btn-action');
-        btnActionSeeUser.setAttribute('data-action', 'seeNews');
-        btnActionSeeUser.setAttribute('id', 'btnActionSeeNews');
-        btnActionSeeUser.textContent = 'Voir les informations';
-        document.querySelector('.user-home>.content').appendChild(btnActionSeeUser);
+        let btnActionSeeNews = document.createElement('DIV');
+        btnActionSeeNews.classList.add('btn-action');
+        btnActionSeeNews.setAttribute('data-action', 'seeNews');
+        btnActionSeeNews.setAttribute('id', 'btnActionSeeNews');
+        btnActionSeeNews.innerHTML = '<div><p class="title">Voir les informations</p><p class="subtitle">Consultez les posts de vos ami·es</p></div><svg width="8" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.63933 6.88208L2.13901 1.17591C1.65578 0.674598 0.859869 0.674598 0.376637 1.17591C-0.106595 1.67723 -0.106595 2.50293 0.376637 3.00425L4.98156 7.79624L0.362424 12.5882C-0.120808 13.0896 -0.120808 13.9153 0.362424 14.4166C0.60404 14.6672 0.930933 14.7999 1.24361 14.7999C1.5705 14.7999 1.88318 14.6672 2.1248 14.4166L7.62512 8.71041C8.12257 8.20909 8.12257 7.38339 7.63933 6.88208Z" fill="#666666"></path></svg>';
+        document.querySelector('.user-home>.content').appendChild(btnActionSeeNews);
 
         if (administrador === true) {
             let adminWhitness = document.createElement('DIV');
             adminWhitness.style = 'position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; padding: 0; background: linear-gradient(90deg, black, rgba(0, 0, 0, .5)); text-indent: 5px; color: white;';
             adminWhitness.innerText = 'Administrateur';
             document.querySelector('.user-home').appendChild(adminWhitness);
-            let btnactSeeusers = document.createElement('DIV');
-            btnactSeeusers.classList.add('btn-action');
-            btnactSeeusers.setAttribute('data-action', 'seeUser');
-            btnactSeeusers.setAttribute('id', 'btnActionSeeUsers');
-            btnactSeeusers.innerText = 'Voir les utilisateurs';
-            document.querySelector('.user-home>.content').appendChild(btnactSeeusers);
+            let btnactSeeUsers = document.createElement('DIV');
+            btnactSeeUsers.classList.add('btn-action');
+            btnactSeeUsers.setAttribute('data-action', 'seeUser');
+            btnactSeeUsers.setAttribute('id', 'btnActionSeeUsers');
+            btnactSeeUsers.innerHTML = '<div><p class="title">Voir les utilisateurices</p><p class="subtitle">Accédez à l\'ensemble des comptes</p></div><svg width="8" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.63933 6.88208L2.13901 1.17591C1.65578 0.674598 0.859869 0.674598 0.376637 1.17591C-0.106595 1.67723 -0.106595 2.50293 0.376637 3.00425L4.98156 7.79624L0.362424 12.5882C-0.120808 13.0896 -0.120808 13.9153 0.362424 14.4166C0.60404 14.6672 0.930933 14.7999 1.24361 14.7999C1.5705 14.7999 1.88318 14.6672 2.1248 14.4166L7.62512 8.71041C8.12257 8.20909 8.12257 7.38339 7.63933 6.88208Z" fill="#666666"></path></svg>';
+            document.querySelector('.user-home>.content').appendChild(btnactSeeUsers);
         }
 
         btnActionFounding();
@@ -282,24 +294,45 @@ function seeUser() {
             let userItem = document.createElement('DIV');
             userItem.classList.add('user-item');
             userItem.setAttribute('data-user', account['username']);
-            userItem.innerHTML = '<div class="avatar" style="background-image: url(' + account['avatar_url'] + ')"></div><div class="username">' + account['username'] + '</div>';
+            // userItem.innerHTML = '<div class="avatar" style="background-image: url(' + account['avatar_url'] + ')"></div><div class="username">' + account['username'] + '</div>';
+            userItem.innerHTML = '<div class="username">' + account['username'] + '</div>';
             document.querySelector('.second>.content').appendChild(userItem);
         });
     }
+
+    setTimeout(() => {
+        btnUseritemFounding();
+    }, 200);
 }
 
 function seeNews() {
     document.querySelector('.user-home').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
     document.querySelector('.second>.content').style.paddingTop = '0';
+    document.getElementById('btnCreateNews').style.display = 'flex';
+        // let request = new XMLHttpRequest();
+        // request.open('GET', postsURL);
+        // request.responseType = 'json';
+        // request.setRequestHeader('Content-type', 'application/json');
+        // request.send();
 
-    let request = new XMLHttpRequest();
-    request.open('GET', postsURL);
-    request.responseType = 'json';
-    request.send();
-
-    request.onload = function () {
-        jsonData = request.response;
+        // request.onload = function () {
+        //     jsonData = request.response;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", postsURL, true);
+        
+        xhr.setRequestHeader("Accept", "application/json");
+        
+        xhr.onreadystatechange = function () {
+           if (xhr.readyState === 4) {
+              console.log(xhr.status);
+              console.log(xhr.responseText);
+           }};
+        
+    xhr.send();
+    
+    xhr.onload = function () {
+        jsonData = JSON.parse(xhr.responseText);
         console.log(jsonData);
 
         let i = 0;
@@ -344,16 +377,37 @@ function seeNews() {
     // setTimeout(function () { btnNewsitemFounding(); }, 800);
 }
 
+document.getElementById('btnCreateNews').addEventListener('click', function () {
+    openNewsCreationPanel();
+});
+
+function openNewsCreationPanel() {
+    document.querySelector('body').style.width = '600px';
+    document.querySelector('.second').style.left = 'calc(50% - 300px)';
+    document.querySelector('.second').style.width = '600px';
+    document.querySelector('.second').appendChild(document.querySelector('.message-writing-screen'));
+    document.querySelector('.message-writing-screen').style.display = 'block';
+    document.querySelector('.second>.content').style.width = '300px';
+    document.querySelector('.second>.content').style.marginLeft = '300px';
+}
+
 document.getElementById('btn-close-second').addEventListener('click', function () {
     document.querySelector('.second>.content').innerHTML = '';
     document.querySelector('.second').style.display = 'none';
     document.querySelector('.user-home').style.display = 'block';
+    document.getElementById('btnCreateNews').style.display = 'none';
 });
 
 document.getElementById('btn-close-third').addEventListener('click', function () {
     document.querySelector('.third>.content>.content>.badges').innerHTML = '';
     document.querySelector('.third').style.display = 'none';
     document.querySelector('.second').style.display = 'block';
+    document.querySelector('.third>.content>.avatar').style.backgroundImage = '';
+    document.querySelector('.third>.content>.content>.username').textContent = '';
+    document.querySelector('.third>.content>.banner').style.background = 'black';
+    if (document.getElementById('admin-whitness-consulted')) {
+        document.getElementById('admin-whitness-consulted').remove();
+    }
 });
 
 let btnUseritem = document.getElementsByClassName("user-item");
@@ -362,12 +416,64 @@ let btnAction = document.getElementsByClassName("btn-action");
 function btnUseritemFounding() {
     for (var i = 0; i < btnUseritem.length; i++) {
         btnUseritem[i].addEventListener("click", function () {
-            document.querySelector('.second').style.display = 'none';
-            document.querySelector('.third').style.display = 'block';
-            let localProps = this.getAttribute('data-user');
-            localProps.toString();
-            sendRequest(accountsURL, localProps, 'userpage', 'third>.content');
+            consultingUserFromUserItem(this);
         });
+    }
+}
+
+function consultingUserFromUserItem(element) {
+    document.querySelector('.second').style.display = 'none';
+    document.querySelector('.third').style.display = 'block';
+    let consultedAccountName = element.getAttribute('data-user');
+    consultedAccountName.toString();
+
+    let request = new XMLHttpRequest();
+    request.open('GET', accountsURL);
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function () {
+        jsonData = request.response;
+
+        let consultedAccountAvatarUrl;
+        let consultedAccountBannerUrl;
+        let consultedAccountBadgesUrl;
+        let consultedAccountAdministrador;
+
+        jsonData.forEach(account => {
+            if (account['username'] === consultedAccountName) {
+                consultedAccountAvatarUrl = account['avatar_url'];
+                consultedAccountBannerUrl = account['banner_url'];
+                if (account['administrador']) {
+                    consultedAccountAdministrador = true;
+                }
+            }
+        });
+
+        if (consultedAccountBannerUrl !== undefined) {
+            document.querySelector('.third>.content>.banner').style.backgroundImage = 'url(' + consultedAccountBannerUrl + ')';
+            document.querySelector('.third>.content>.banner').style.backgroundPosition = 'center';
+            document.querySelector('.third>.content>.banner').style.backgroundSize = 'cover';
+            document.querySelector('.third>.content>.banner').style.backgroundRepeat = 'no-repeat';
+            document.querySelector('.third>.content>.banner').style.height = '120px';
+        } else {
+            document.querySelector('.third>.content>.banner').style.background = 'black';
+            document.querySelector('.third>.content>.banner').style.height = '60px';
+        }
+        document.querySelector('.third>.content>.avatar').style.backgroundImage = 'url(' + consultedAccountAvatarUrl + ')';
+        document.querySelector('.third>.content>.content>.username').textContent = consultedAccountName;
+
+        if (consultedAccountAdministrador) {
+            let adminWhitness = document.createElement('DIV');
+            adminWhitness.style = 'position: absolute; top: 0; left: 0; width: 100%; height: 20px; margin: 0; padding: 0; background: linear-gradient(90deg, black, rgba(0, 0, 0, .5)); text-indent: 5px; color: white;';
+            adminWhitness.innerText = 'Administrateur';
+            adminWhitness.id = 'admin-whitness-consulted';
+            document.querySelector('.third>.content').appendChild(adminWhitness);
+        } else {
+            if (document.getElementById('admin-whitness-consulted')) {
+                document.getElementById('admin-whitness-consulted').remove();
+            }
+        }
     }
 }
 
@@ -409,3 +515,39 @@ function showHint(str) {
 }
 
 // document.getElementById('email').autocomplete = 'off';
+
+document.getElementById('redactingPost').onkeydown = function (e) {
+    let redactingPostLetterNumber = document.getElementById('redactingPost').value.length;
+    document.getElementById('redactingPostLetterNumber').textContent = redactingPostLetterNumber;
+
+    if (redactingPostLetterNumber < 20) {
+        document.querySelector('.redacting-post-validity-indicator').style.borderColor = 'red';
+        document.querySelector('.redacting-post-validity-indicator>p').style.color = 'red';
+        document.querySelector('#redactingPostValidityIndicator').textContent = 'est trop court';
+    } else if (redactingPostLetterNumber < 200) {
+        document.querySelector('.redacting-post-validity-indicator').style.borderColor = 'greenyellow';
+        document.querySelector('.redacting-post-validity-indicator>p').style.color = 'greenyellow';
+        document.querySelector('#redactingPostValidityIndicator').textContent = 'est valide';
+    } else {
+        document.querySelector('.redacting-post-validity-indicator').style.borderColor = 'red';
+        document.querySelector('.redacting-post-validity-indicator>p').style.color = 'red';
+        document.querySelector('#redactingPostValidityIndicator').textContent = 'est trop long';
+    }
+}
+
+document.getElementById('btnSendRedactedPost').onclick = function () {
+    let redactingPostLetterNumber = document.getElementById('redactingPost').value.length;
+
+    if (redactingPostLetterNumber < 20) {
+        document.querySelector('.redacting-post-validity-indicator>p').style.textDecoration = 'underline';
+    } else if (redactingPostLetterNumber < 200) {
+        let postContent = document.getElementById('redactingPost').value;
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'http://localhost:8000/testing/?postcontent=' + postContent + '<br><br>&postauthor=' + localStorage.getItem('username'));
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        request.send('postContent=' + postContent);
+    } else {
+        document.querySelector('.redacting-post-validity-indicator>p').style.textDecoration = 'underline';
+    }
+}
